@@ -5,7 +5,7 @@ use ieee.std_logic_unsigned.all;
 entity CLOCK_GEN is
   port(
     -- 100 MHz crystal oscillator input
-    CLK100MHZ : in  std_logic;
+    CLK_MAIN : in  std_logic;
     -- Divided clock output
     CLK_SYS   : out std_logic;
     CLK_SEG   : out std_logic;
@@ -20,9 +20,9 @@ architecture Behavioural of CLOCK_GEN is
   signal User_Reg     : std_logic;
 begin
 
-  process(CLK100MHZ)
+  process(CLK_MAIN)
   begin
-    if rising_edge(CLK100MHZ) then
+    if rising_edge(CLK_MAIN) then
       Sys_Counter <= Sys_Counter + 1;
     end if;
   end process;
@@ -43,7 +43,7 @@ begin
     if rising_edge(Seg_Counter(15)) then
       User_Counter <= User_Counter + 1;
       if User_Counter = b"1_0111_1101" then
-        User_Counter <= b"0";
+        User_Counter <= b"0_0000_0000";
         User_Reg     <= not User_Reg;
       end if;
     end if;
