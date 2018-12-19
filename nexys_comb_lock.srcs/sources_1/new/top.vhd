@@ -8,7 +8,11 @@ entity top is
     SEGMENTS     : out std_logic_vector(7 downto 0);
     DIGITS       : out std_logic_vector(7 downto 0);
     SWITCHES     : in  std_logic_vector(2 downto 0);
-    LED_CLK_USER : out std_logic
+    BTND         : in  std_logic;
+    BTNC         : in  std_logic;
+    LED_CLK_USER : out std_logic;
+    LED17_G      : out std_logic;
+    LED17_R      : out std_logic
     );
 end top;
 
@@ -33,7 +37,7 @@ architecture Structural of top is
       DISP_EXT     : in  std_logic_vector(7 downto 0);
       -- Drive output
       DISP_ANODE   : out std_logic_vector(7 downto 0);  -- Digit select
-      DISP_CATHODE : out std_logic_vector(7 downto 0)  -- Segment select
+      DISP_CATHODE : out std_logic_vector(7 downto 0)   -- Segment select
       );
   end component;
 
@@ -48,7 +52,17 @@ architecture Structural of top is
       );
   end component;
 
+  component DEBOUNCER is
+    port(
+      DEB_CLK   : in  std_logic;
+      DEB_RESET : in  std_logic;
+      DEB_IN    : in  std_logic;
+      DEB_OUT   : out std_logic
+      );
+  end component;
+
   signal CLK_SEG_Signal    : std_logic;
+  signal CLK_USER_Signal   : std_logic;
   signal GFX_DATA_Signal   : std_logic_vector(19 downto 0);
   signal GFX_OPCODE_Signal : std_logic_vector(2 downto 0);
   signal GFX_BIN_Signal    : std_logic_vector(31 downto 0);
@@ -59,7 +73,7 @@ begin
   CLOCK_GEN_Inst : CLOCK_GEN port map(
     CLK_MAIN => CLK100MHZ,
     CLK_SEG  => CLK_SEG_Signal,
-    CLK_USER => LED_CLK_USER
+    CLK_USER => CLK_USER_Signal
     );
 
   DISP_DRV_Inst : DISP_DRV port map(
@@ -77,7 +91,17 @@ begin
     GFX_EXT    => GFX_EXT_Signal
     );
 
-  GFX_DATA_Signal   <= x"00000";
-  GFX_OPCODE_Signal <= SWITCHES;
+  DEBOUNCER_Inst : DEBOUNCER port map(
+    DEB_CLK   => CLK_USER_Signal,
+    DEB_RESET => BTND,
+    DEB_IN    => BTNC,
+    DEB_OUT   => LED17_R
+    );
+
+  GFX_DATA_Signal   <= (others => '0');
+  GFX_OPCODE_Signal <= (others => '0');
+  LED_CLK_USER      <= CLK_USER_Signal;
+
+
 
 end Structural;

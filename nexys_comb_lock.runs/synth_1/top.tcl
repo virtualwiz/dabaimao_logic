@@ -17,7 +17,6 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param synth.incrementalSynthesisCache ./.Xil/Vivado-3352-Aurora-St-Plus/incrSyn
 set_param xicom.use_bs_reader 1
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
@@ -35,6 +34,7 @@ set_property ip_output_repo /home/matthew/Documents/nexys_comb_lock/nexys_comb_l
 set_property ip_cache_permissions {read write} [current_project]
 read_vhdl -library xil_defaultlib {
   /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/CLOCK_GEN.vhd
+  /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/DEBOUNCER.vhd
   /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/DISP_DRV.vhd
   /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/DISP_GFX.vhd
   /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/top.vhd

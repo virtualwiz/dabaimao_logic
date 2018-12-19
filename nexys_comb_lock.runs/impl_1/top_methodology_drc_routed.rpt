@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date         : Tue Dec 18 11:03:29 2018
+| Date         : Wed Dec 19 11:32:21 2018
 | Host         : Aurora-St-Plus running 64-bit Ubuntu 16.04.5 LTS
 | Command      : report_methodology -file top_methodology_drc_routed.rpt -pb top_methodology_drc_routed.pb -rpx top_methodology_drc_routed.rpx
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 29
+             Violations found: 26
 +-----------+----------+-----------------------------+------------+
 | Rule      | Severity | Description                 | Violations |
 +-----------+----------+-----------------------------+------------+
-| TIMING-17 | Warning  | Non-clocked sequential cell | 29         |
+| TIMING-17 | Warning  | Non-clocked sequential cell | 26         |
 +-----------+----------+-----------------------------+------------+
 
 2. REPORT DETAILS
@@ -134,45 +134,30 @@ Related violations: <none>
 
 TIMING-17#21 Warning
 Non-clocked sequential cell  
-The clock pin CLOCK_GEN_Inst/User_Counter_reg[4]/C is not reached by a timing clock
+The clock pin DEBOUNCER_Inst/Q1_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#22 Warning
 Non-clocked sequential cell  
-The clock pin CLOCK_GEN_Inst/User_Counter_reg[5]/C is not reached by a timing clock
+The clock pin DEBOUNCER_Inst/Q2_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#23 Warning
 Non-clocked sequential cell  
-The clock pin CLOCK_GEN_Inst/User_Counter_reg[6]/C is not reached by a timing clock
+The clock pin DEBOUNCER_Inst/Q3_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#24 Warning
 Non-clocked sequential cell  
-The clock pin CLOCK_GEN_Inst/User_Counter_reg[7]/C is not reached by a timing clock
+The clock pin DISP_DRV_Inst/Decode_ROM_Address_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#25 Warning
 Non-clocked sequential cell  
-The clock pin CLOCK_GEN_Inst/User_Counter_reg[8]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#26 Warning
-Non-clocked sequential cell  
-The clock pin CLOCK_GEN_Inst/User_Reg_reg/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#27 Warning
-Non-clocked sequential cell  
-The clock pin DISP_DRV_Inst/Decode_ROM_Address_reg[0]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#28 Warning
-Non-clocked sequential cell  
 The clock pin DISP_DRV_Inst/Decode_ROM_Address_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
-TIMING-17#29 Warning
+TIMING-17#26 Warning
 Non-clocked sequential cell  
 The clock pin DISP_DRV_Inst/Decode_ROM_Address_reg[2]/C is not reached by a timing clock
 Related violations: <none>

@@ -7,16 +7,16 @@ entity CLOCK_GEN is
     -- 100 MHz crystal oscillator input
     CLK_MAIN : in  std_logic;
     -- Divided clock output
-    CLK_SYS   : out std_logic;
-    CLK_SEG   : out std_logic;
-    CLK_USER  : out std_logic
+    CLK_SYS  : out std_logic;
+    CLK_SEG  : out std_logic;
+    CLK_USER : out std_logic
     );
 end CLOCK_GEN;
 
 architecture Behavioural of CLOCK_GEN is
   signal Sys_Counter  : std_logic_vector(1 downto 0);  -- Sys : 25 MHz
-  signal Seg_Counter  : std_logic_vector(15 downto 0);  -- Seg : 762 Hz, 16b after Sys
-  signal User_Counter : std_logic_vector(8 downto 0);  -- User : 1 Hz, count Seg to 381
+  signal Seg_Counter  : std_logic_vector(15 downto 0);  -- Seg : 16b after Sys
+  signal User_Counter : std_logic_vector(3 downto 0);  -- User : ~ 24 Hz
   signal User_Reg     : std_logic;
 begin
 
@@ -42,13 +42,9 @@ begin
   begin
     if rising_edge(Seg_Counter(15)) then
       User_Counter <= User_Counter + 1;
-      if User_Counter = b"1_0111_1101" then
-        User_Counter <= b"0_0000_0000";
-        User_Reg     <= not User_Reg;
-      end if;
     end if;
   end process;
 
-  CLK_USER <= User_Reg;
+  CLK_USER <= User_Counter(3);
 
 end Behavioural;
