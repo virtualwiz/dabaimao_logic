@@ -21,7 +21,6 @@ architecture Structural of top is
       -- 100 MHz crystal oscillator input
       CLK_MAIN : in  std_logic;
       -- Divided clock output
-      CLK_SYS  : out std_logic;
       CLK_SEG  : out std_logic;
       CLK_USER : out std_logic
       );
@@ -53,10 +52,9 @@ architecture Structural of top is
 
   component DEBOUNCER is
     port(
-      DEB_CLK   : in  std_logic;
-      DEB_RESET : in  std_logic;
-      DEB_IN    : in  std_logic;
-      DEB_OUT   : out std_logic
+      DEB_CLK : in  std_logic;
+      DEB_IN  : in  std_logic;
+      DEB_OUT : out std_logic
       );
   end component;
 
@@ -113,10 +111,9 @@ begin
   DEB_Array :
   for DEB_Address in 0 to 3 generate
     DEBOUNCER_Inst : DEBOUNCER port map(
-      DEB_CLK   => CLK_USER_Signal,
-      DEB_RESET => BTNS(4),
-      DEB_IN    => BTNS(DEB_Address),
-      DEB_OUT   => BTNS_Signal(DEB_Address)
+      DEB_CLK => CLK_USER_Signal,
+      DEB_IN  => BTNS(DEB_Address),
+      DEB_OUT => BTNS_Signal(DEB_Address)
       );
   end generate DEB_Array;
 
@@ -133,7 +130,5 @@ begin
 
   LED17   <= BTNS_Signal(2 downto 0);
   LED16_R <= CLK_USER_Signal;
-
-
 
 end Structural;
