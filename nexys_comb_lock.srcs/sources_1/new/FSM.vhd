@@ -6,18 +6,18 @@ entity FSM is
   port(
     -- Clock for FSM
     FSM_CLK           : in  std_logic;
+    FSM_DELAY_S       : in  std_logic;
     -- Keys input
     KEYPAD            : in  std_logic_vector(3 downto 0);
     KEY_ACTIVATE_NORM : in  std_logic;
     KEY_ACTIVATE_PART : in  std_logic;
     KEY_CONFIRM       : in  std_logic;
+    DR_SENSOR         : in  std_logic;
     -- Signals to display
     FSM_GFX_OPCODE    : out std_logic_vector(2 downto 0);
     FSM_GFX_DATA      : out std_logic_vector(19 downto 0);
     -- Signals to servo motor
-    LATCH_DRIVE       : out std_logic;
-    -- Debug
-    DEBUG_LED         : out std_logic_vector(15 downto 0)
+    LATCH_DRIVE       : out std_logic
     );
 end FSM;
 
@@ -39,7 +39,7 @@ architecture Behavioral of FSM is
   -- Passcode buffer registers
   signal BUF_Passcode           : std_logic_vector(19 downto 0);
   signal BUF_Passcode_Preset    : std_logic_vector(19 downto 0) := x"24013";
-  signal BUF_Passcode_Part      : std_logic_vector(7 downto 0);
+  signal BUF_Passcode_Part      : std_logic_vector(7 downto 0)  := x"FF";
   -- Mode flag
   signal FSM_Secure_Mode_Enable : std_logic;
   -- Key input register pointer
@@ -60,7 +60,7 @@ begin
         when "100" =>
           BUF_Passcode(3 downto 0) <= KEYPAD;
         when others =>
-          BUF_Passcode <= x"00000";
+          null;
       end case;
     end if;
   end process;
@@ -114,8 +114,8 @@ begin
       FSM_G_Data_Signal   <= (others => '0');
     elsif State = st9_declined_code_disp then  -- Display entered passcode 2 digits
       LATCH_Signal        <= '0';
-      FSM_G_Opcode_Signal <= b"110";
-      FSM_G_Data_Signal   <= x"000" & BUF_Passcode(19 downto 12);
+      FSM_G_Opcode_Signal <= b"010";
+      FSM_G_Data_Signal   <= BUF_Passcode;
     elsif State = stX_activate then
       LATCH_Signal        <= '0';
       FSM_G_Opcode_Signal <= b"001";
@@ -156,11 +156,7 @@ begin
         BUF_Pointer <= "010";
         if KEY_CONFIRM = '1' then
           if FSM_Secure_Mode_Enable = '1' then
-            if BUF_Passcode(19 downto 12) = BUF_Passcode_Part then
-              Next_State <= st6_accepted;
-            else
-              Next_State <= st8_declined;
-            end if;
+            Next_State <= stC_compare;
           else
             Next_State <= st3_p3;
           end if;
@@ -176,26 +172,49 @@ begin
           Next_State <= st5_p5;
         end if;
       when st5_p5 =>
+        BUF_Pointer <= "000";
         Next_State <= stC_compare;
       when stC_compare =>
-        if BUF_Passcode = BUF_Passcode_Preset then
-          Next_State <= st6_accepted;
+        if FSM_Secure_Mode_Enable = '0' then
+          if BUF_Passcode = BUF_Passcode_Preset then
+            Next_State <= st6_accepted;
+          else
+            Next_State <= st8_declined;
+          end if;
         else
-          Next_State <= st8_declined;
+          if BUF_Passcode(19 downto 12) = BUF_Passcode_Part then
+            Next_State <= st6_accepted;
+          else
+            Next_State <= st8_declined;
+          end if;
         end if;
       when st6_accepted =>
-        if KEY_CONFIRM = '1' then
+        if FSM_DELAY_S = '1' then
+          Next_State <= st7_accepted_code_disp;
+        elsif DR_SENSOR = '1' then
           Next_State <= st0_idle;
         end if;
       when st8_declined =>
-        if KEY_CONFIRM = '1' then
+        if FSM_DELAY_S = '1' then
+          Next_State <= st9_declined_code_disp;
+        elsif DR_SENSOR = '1' then
+          Next_State <= st0_idle;
+        end if;
+      when st7_accepted_code_disp =>
+        if FSM_DELAY_S = '1' then
+          Next_State <= st6_accepted;
+        elsif DR_SENSOR = '1' then
+          Next_State <= st0_idle;
+        end if;
+      when st9_declined_code_disp =>
+        if FSM_DELAY_S = '1' then
+          Next_State <= st8_declined;
+        elsif DR_SENSOR = '1' then
           Next_State <= st0_idle;
         end if;
       when others =>
         Next_State <= st0_idle;
     end case;
   end process;
-
-  DEBUG_LED <= BUF_Passcode(19 downto 4);
 
 end Behavioral;

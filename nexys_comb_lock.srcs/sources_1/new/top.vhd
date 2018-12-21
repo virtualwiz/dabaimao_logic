@@ -8,6 +8,7 @@ entity top is
     SEGMENTS  : out std_logic_vector(7 downto 0);
     DIGITS    : out std_logic_vector(7 downto 0);
     SWITCHES  : in  std_logic_vector(3 downto 0);
+    SENSOR    : in  std_logic;
     BTNS      : in  std_logic_vector(4 downto 0);
     LED17     : out std_logic_vector(2 downto 0);
     LED16_R   : out std_logic;
@@ -19,10 +20,11 @@ architecture Structural of top is
   component CLOCK_GEN
     port(
       -- 100 MHz crystal oscillator input
-      CLK_MAIN : in  std_logic;
+      CLK_MAIN   : in  std_logic;
       -- Divided clock output
-      CLK_SEG  : out std_logic;
-      CLK_USER : out std_logic
+      CLK_SEG    : out std_logic;
+      CLK_USER   : out std_logic;
+      CLK_SECOND : out std_logic
       );
   end component;
 
@@ -62,23 +64,24 @@ architecture Structural of top is
     port(
       -- Clock for FSM
       FSM_CLK           : in  std_logic;
+      FSM_DELAY_S       : in  std_logic;
       -- Keys input
       KEYPAD            : in  std_logic_vector(3 downto 0);
       KEY_ACTIVATE_NORM : in  std_logic;
       KEY_ACTIVATE_PART : in  std_logic;
       KEY_CONFIRM       : in  std_logic;
+      DR_SENSOR         : in  std_logic;
       -- Signals to display
       FSM_GFX_OPCODE    : out std_logic_vector(2 downto 0);
       FSM_GFX_DATA      : out std_logic_vector(19 downto 0);
       -- Signals to servo motor
-      LATCH_DRIVE       : out std_logic;
-      -- Debug
-      DEBUG_LED         : out std_logic_vector(15 downto 0)
+      LATCH_DRIVE       : out std_logic
       );
   end component;
 
   signal CLK_SEG_Signal    : std_logic;
   signal CLK_USER_Signal   : std_logic;
+  signal CLK_SECOND_Signal : std_logic;
   signal GFX_DATA_Signal   : std_logic_vector(19 downto 0);
   signal GFX_OPCODE_Signal : std_logic_vector(2 downto 0);
   signal GFX_BIN_Signal    : std_logic_vector(31 downto 0);
@@ -88,9 +91,10 @@ architecture Structural of top is
 begin
 
   CLOCK_GEN_Inst : CLOCK_GEN port map(
-    CLK_MAIN => CLK100MHZ,
-    CLK_SEG  => CLK_SEG_Signal,
-    CLK_USER => CLK_USER_Signal
+    CLK_MAIN   => CLK100MHZ,
+    CLK_SEG    => CLK_SEG_Signal,
+    CLK_USER   => CLK_USER_Signal,
+    CLK_SECOND => CLK_SECOND_Signal
     );
 
   DISP_DRV_Inst : DISP_DRV port map(
@@ -119,16 +123,18 @@ begin
 
   FSM_Inst : FSM port map(
     FSM_CLK           => CLK_USER_Signal,
+    FSM_DELAY_S       => CLK_SECOND_Signal,
     KEYPAD            => SWITCHES,
+    DR_SENSOR         => SENSOR,
     FSM_GFX_OPCODE    => GFX_OPCODE_Signal,
     FSM_GFX_DATA      => GFX_DATA_Signal,
     KEY_ACTIVATE_NORM => BTNS_Signal(0),
     KEY_ACTIVATE_PART => BTNS_Signal(2),
-    KEY_CONFIRM       => BTNS_Signal(1),
-    DEBUG_LED         => LEDS
+    KEY_CONFIRM       => BTNS_Signal(1)
     );
 
-  LED17   <= BTNS_Signal(2 downto 0);
-  LED16_R <= CLK_USER_Signal;
+  -- LED17   <= BTNS_Signal(2 downto 0);
+  -- LED16_R <= CLK_SECOND_Signal;
+  LEDS(3 downto 0) <= SWITCHES;
 
 end Structural;
