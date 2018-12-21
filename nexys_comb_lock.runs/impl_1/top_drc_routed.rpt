@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date         : Wed Dec 19 11:32:19 2018
+| Date         : Fri Dec 21 14:46:47 2018
 | Host         : Aurora-St-Plus running 64-bit Ubuntu 16.04.5 LTS
 | Command      : report_drc -file top_drc_routed.rpt -pb top_drc_routed.pb -rpx top_drc_routed.rpx
 | Design       : top
@@ -24,12 +24,15 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 1
-+----------+----------+-----------------------------------------------------+------------+
-| Rule     | Severity | Description                                         | Violations |
-+----------+----------+-----------------------------------------------------+------------+
-| CFGBVS-1 | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties | 1          |
-+----------+----------+-----------------------------------------------------+------------+
+             Violations found: 10
++-------------+----------+-------------------------------------------------------------+------------+
+| Rule        | Severity | Description                                                 | Violations |
++-------------+----------+-------------------------------------------------------------+------------+
+| CFGBVS-1    | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties         | 1          |
+| IOSR-1      | Warning  | IOB set reset sharing                                       | 4          |
+| PDRC-153    | Warning  | Gated clock check                                           | 4          |
+| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 1          |
++-------------+----------+-------------------------------------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
@@ -44,6 +47,61 @@ Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_des
  #where value2 is the voltage provided to configuration bank 0
 
 Refer to the device configuration user guide for more information.
+Related violations: <none>
+
+IOSR-1#1 Warning
+IOB set reset sharing  
+IO SWITCHES[0] connects to flops which have these FSM_Inst/BUF_Passcode[11]_i_1_n_0, FSM_Inst/BUF_Passcode[15]_i_1_n_0, FSM_Inst/BUF_Passcode[19]_i_1_n_0, FSM_Inst/BUF_Passcode[3]_i_1_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#2 Warning
+IOB set reset sharing  
+IO SWITCHES[1] connects to flops which have these FSM_Inst/BUF_Passcode[11]_i_1_n_0, FSM_Inst/BUF_Passcode[15]_i_1_n_0, FSM_Inst/BUF_Passcode[19]_i_1_n_0, FSM_Inst/BUF_Passcode[3]_i_1_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#3 Warning
+IOB set reset sharing  
+IO SWITCHES[2] connects to flops which have these FSM_Inst/BUF_Passcode[11]_i_1_n_0, FSM_Inst/BUF_Passcode[15]_i_1_n_0, FSM_Inst/BUF_Passcode[19]_i_1_n_0, FSM_Inst/BUF_Passcode[3]_i_1_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#4 Warning
+IOB set reset sharing  
+IO SWITCHES[3] connects to flops which have these FSM_Inst/BUF_Passcode[11]_i_1_n_0, FSM_Inst/BUF_Passcode[15]_i_1_n_0, FSM_Inst/BUF_Passcode[19]_i_1_n_0, FSM_Inst/BUF_Passcode[3]_i_1_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+PDRC-153#1 Warning
+Gated clock check  
+Net DEB_Array[0].DEBOUNCER_Inst/FSM_onehot_State_reg[0] is a gated clock net sourced by a combinational pin DEB_Array[0].DEBOUNCER_Inst/FSM_Secure_Mode_Enable_reg_i_2/O, cell DEB_Array[0].DEBOUNCER_Inst/FSM_Secure_Mode_Enable_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#2 Warning
+Gated clock check  
+Net DEB_Array[1].DEBOUNCER_Inst/LED17_OBUF[0] is a gated clock net sourced by a combinational pin DEB_Array[1].DEBOUNCER_Inst/LED17_OBUF[1]_inst_i_1/O, cell DEB_Array[1].DEBOUNCER_Inst/LED17_OBUF[1]_inst_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#3 Warning
+Gated clock check  
+Net FSM_Inst/BUF_Pointer_reg[2]_i_1_n_0 is a gated clock net sourced by a combinational pin FSM_Inst/BUF_Pointer_reg[2]_i_1/O, cell FSM_Inst/BUF_Pointer_reg[2]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#4 Warning
+Gated clock check  
+Net FSM_Inst/E[0] is a gated clock net sourced by a combinational pin FSM_Inst/GFX_BIN_reg[31]_i_2/O, cell FSM_Inst/GFX_BIN_reg[31]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PLHOLDVIO-2#1 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT DEB_Array[1].DEBOUNCER_Inst/LED17_OBUF[1]_inst_i_1 is driving clock pin of 20 cells. This could lead to large hold time violations. First few involved cells are:
+    FSM_Inst/BUF_Passcode_reg[0] {FDRE}
+    FSM_Inst/BUF_Passcode_reg[10] {FDRE}
+    FSM_Inst/BUF_Passcode_reg[11] {FDRE}
+    FSM_Inst/BUF_Passcode_reg[12] {FDRE}
+    FSM_Inst/BUF_Passcode_reg[13] {FDRE}
+    FSM_Inst/BUF_Passcode_reg[14] {FDRE}
+    FSM_Inst/BUF_Passcode_reg[15] {FDRE}
+    FSM_Inst/BUF_Passcode_reg[16] {FDRE}
+    FSM_Inst/BUF_Passcode_reg[17] {FDRE}
+
 Related violations: <none>
 
 

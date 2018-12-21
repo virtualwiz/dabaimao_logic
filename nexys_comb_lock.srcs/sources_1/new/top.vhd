@@ -4,15 +4,14 @@ use ieee.std_logic_unsigned.all;
 
 entity top is
   port(
-    CLK100MHZ    : in  std_logic;
-    SEGMENTS     : out std_logic_vector(7 downto 0);
-    DIGITS       : out std_logic_vector(7 downto 0);
-    SWITCHES     : in  std_logic_vector(2 downto 0);
-    BTND         : in  std_logic;
-    BTNC         : in  std_logic;
-    LED_CLK_USER : out std_logic;
-    LED17_G      : out std_logic;
-    LED17_R      : out std_logic
+    CLK100MHZ : in  std_logic;
+    SEGMENTS  : out std_logic_vector(7 downto 0);
+    DIGITS    : out std_logic_vector(7 downto 0);
+    SWITCHES  : in  std_logic_vector(3 downto 0);
+    BTNS      : in  std_logic_vector(4 downto 0);
+    LED17     : out std_logic_vector(2 downto 0);
+    LED16_R   : out std_logic;
+    LEDS      : out std_logic_vector(15 downto 0)
     );
 end top;
 
@@ -61,12 +60,32 @@ architecture Structural of top is
       );
   end component;
 
+  component FSM is
+    port(
+      -- Clock for FSM
+      FSM_CLK           : in  std_logic;
+      -- Keys input
+      KEYPAD            : in  std_logic_vector(3 downto 0);
+      KEY_ACTIVATE_NORM : in  std_logic;
+      KEY_ACTIVATE_PART : in  std_logic;
+      KEY_CONFIRM       : in  std_logic;
+      -- Signals to display
+      FSM_GFX_OPCODE    : out std_logic_vector(2 downto 0);
+      FSM_GFX_DATA      : out std_logic_vector(19 downto 0);
+      -- Signals to servo motor
+      LATCH_DRIVE       : out std_logic;
+      -- Debug
+      DEBUG_LED         : out std_logic_vector(15 downto 0)
+      );
+  end component;
+
   signal CLK_SEG_Signal    : std_logic;
   signal CLK_USER_Signal   : std_logic;
   signal GFX_DATA_Signal   : std_logic_vector(19 downto 0);
   signal GFX_OPCODE_Signal : std_logic_vector(2 downto 0);
   signal GFX_BIN_Signal    : std_logic_vector(31 downto 0);
   signal GFX_EXT_Signal    : std_logic_vector(7 downto 0);
+  signal BTNS_Signal       : std_logic_vector(3 downto 0);
 
 begin
 
@@ -91,16 +110,29 @@ begin
     GFX_EXT    => GFX_EXT_Signal
     );
 
-  DEBOUNCER_Inst : DEBOUNCER port map(
-    DEB_CLK   => CLK_USER_Signal,
-    DEB_RESET => BTND,
-    DEB_IN    => BTNC,
-    DEB_OUT   => LED17_R
+  DEB_Array :
+  for DEB_Address in 0 to 3 generate
+    DEBOUNCER_Inst : DEBOUNCER port map(
+      DEB_CLK   => CLK_USER_Signal,
+      DEB_RESET => BTNS(4),
+      DEB_IN    => BTNS(DEB_Address),
+      DEB_OUT   => BTNS_Signal(DEB_Address)
+      );
+  end generate DEB_Array;
+
+  FSM_Inst : FSM port map(
+    FSM_CLK           => CLK_USER_Signal,
+    KEYPAD            => SWITCHES,
+    FSM_GFX_OPCODE    => GFX_OPCODE_Signal,
+    FSM_GFX_DATA      => GFX_DATA_Signal,
+    KEY_ACTIVATE_NORM => BTNS_Signal(0),
+    KEY_ACTIVATE_PART => BTNS_Signal(2),
+    KEY_CONFIRM       => BTNS_Signal(1),
+    DEBUG_LED         => LEDS
     );
 
-  GFX_DATA_Signal   <= (others => '0');
-  GFX_OPCODE_Signal <= (others => '0');
-  LED_CLK_USER      <= CLK_USER_Signal;
+  LED17   <= BTNS_Signal(2 downto 0);
+  LED16_R <= CLK_USER_Signal;
 
 
 

@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date         : Wed Dec 19 11:32:21 2018
+| Date         : Fri Dec 21 14:46:48 2018
 | Host         : Aurora-St-Plus running 64-bit Ubuntu 16.04.5 LTS
 | Command      : report_methodology -file top_methodology_drc_routed.rpt -pb top_methodology_drc_routed.pb -rpx top_methodology_drc_routed.rpx
 | Design       : top
@@ -23,11 +23,12 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 26
+             Violations found: 117
 +-----------+----------+-----------------------------+------------+
 | Rule      | Severity | Description                 | Violations |
 +-----------+----------+-----------------------------+------------+
-| TIMING-17 | Warning  | Non-clocked sequential cell | 26         |
+| TIMING-17 | Warning  | Non-clocked sequential cell | 85         |
+| TIMING-20 | Warning  | Non-clocked latch           | 32         |
 +-----------+----------+-----------------------------+------------+
 
 2. REPORT DETAILS
@@ -134,32 +135,487 @@ Related violations: <none>
 
 TIMING-17#21 Warning
 Non-clocked sequential cell  
-The clock pin DEBOUNCER_Inst/Q1_reg/C is not reached by a timing clock
+The clock pin DEB_Array[0].DEBOUNCER_Inst/Q1_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#22 Warning
 Non-clocked sequential cell  
-The clock pin DEBOUNCER_Inst/Q2_reg/C is not reached by a timing clock
+The clock pin DEB_Array[0].DEBOUNCER_Inst/Q2_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#23 Warning
 Non-clocked sequential cell  
-The clock pin DEBOUNCER_Inst/Q3_reg/C is not reached by a timing clock
+The clock pin DEB_Array[0].DEBOUNCER_Inst/Q3_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#24 Warning
 Non-clocked sequential cell  
-The clock pin DISP_DRV_Inst/Decode_ROM_Address_reg[0]/C is not reached by a timing clock
+The clock pin DEB_Array[1].DEBOUNCER_Inst/Q1_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#25 Warning
 Non-clocked sequential cell  
-The clock pin DISP_DRV_Inst/Decode_ROM_Address_reg[1]/C is not reached by a timing clock
+The clock pin DEB_Array[1].DEBOUNCER_Inst/Q2_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#26 Warning
 Non-clocked sequential cell  
+The clock pin DEB_Array[1].DEBOUNCER_Inst/Q3_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#27 Warning
+Non-clocked sequential cell  
+The clock pin DEB_Array[2].DEBOUNCER_Inst/Q1_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#28 Warning
+Non-clocked sequential cell  
+The clock pin DEB_Array[2].DEBOUNCER_Inst/Q2_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#29 Warning
+Non-clocked sequential cell  
+The clock pin DEB_Array[2].DEBOUNCER_Inst/Q3_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#30 Warning
+Non-clocked sequential cell  
+The clock pin DISP_DRV_Inst/Decode_ROM_Address_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#31 Warning
+Non-clocked sequential cell  
+The clock pin DISP_DRV_Inst/Decode_ROM_Address_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#32 Warning
+Non-clocked sequential cell  
 The clock pin DISP_DRV_Inst/Decode_ROM_Address_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#33 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#34 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[10]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#35 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[11]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#36 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[12]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#37 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[13]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#38 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[14]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#39 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[15]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#40 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[16]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#41 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[17]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#42 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[18]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#43 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[19]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#44 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#45 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#46 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#47 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[4]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#48 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[5]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#49 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[6]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#50 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[7]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#51 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[8]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#52 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/BUF_Passcode_reg[9]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#53 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#54 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[10]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#55 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[11]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#56 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[12]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#57 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[13]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#58 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[14]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#59 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[15]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#60 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[16]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#61 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[17]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#62 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[18]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#63 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[19]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#64 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#65 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#66 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#67 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[4]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#68 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[5]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#69 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[6]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#70 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[7]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#71 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[8]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#72 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_DATA_reg[9]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#73 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_OPCODE_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#74 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_OPCODE_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#75 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_GFX_OPCODE_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#76 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_onehot_State_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#77 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_onehot_State_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#78 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_onehot_State_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#79 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_onehot_State_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#80 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_onehot_State_reg[4]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#81 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_onehot_State_reg[5]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#82 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_onehot_State_reg[6]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#83 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_onehot_State_reg[7]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#84 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_onehot_State_reg[8]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#85 Warning
+Non-clocked sequential cell  
+The clock pin FSM_Inst/FSM_onehot_State_reg[9]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#1 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[10] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[10]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#2 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[11] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[11]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#3 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[12] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[12]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#4 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[13] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[13]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#5 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[14] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[14]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#6 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[15] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[15]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#7 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[16] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[16]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#8 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[17] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[17]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#9 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[18] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[18]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#10 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[19] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[19]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#11 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[1] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[1]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#12 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[20] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[20]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#13 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[21] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[21]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#14 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[22] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[22]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#15 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[23] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[23]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#16 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[24] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[24]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#17 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[25] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[25]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#18 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[26] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[26]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#19 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[27] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[27]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#20 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[28] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[28]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#21 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[29] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[29]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#22 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[2] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[2]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#23 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[30] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[30]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#24 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[31] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[31]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#25 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[4] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[4]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#26 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[6] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[6]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#27 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[8] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[8]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#28 Warning
+Non-clocked latch  
+The latch DISP_GFX_Inst/GFX_BIN_reg[9] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[9]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#29 Warning
+Non-clocked latch  
+The latch FSM_Inst/BUF_Pointer_reg[0] cannot be properly analyzed as its control pin FSM_Inst/BUF_Pointer_reg[0]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#30 Warning
+Non-clocked latch  
+The latch FSM_Inst/BUF_Pointer_reg[1] cannot be properly analyzed as its control pin FSM_Inst/BUF_Pointer_reg[1]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#31 Warning
+Non-clocked latch  
+The latch FSM_Inst/BUF_Pointer_reg[2] cannot be properly analyzed as its control pin FSM_Inst/BUF_Pointer_reg[2]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#32 Warning
+Non-clocked latch  
+The latch FSM_Inst/FSM_Secure_Mode_Enable_reg cannot be properly analyzed as its control pin FSM_Inst/FSM_Secure_Mode_Enable_reg/G is not reached by a timing clock
 Related violations: <none>
 
 

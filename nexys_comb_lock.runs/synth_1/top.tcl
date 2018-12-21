@@ -37,6 +37,7 @@ read_vhdl -library xil_defaultlib {
   /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/DEBOUNCER.vhd
   /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/DISP_DRV.vhd
   /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/DISP_GFX.vhd
+  /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd
   /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/top.vhd
 }
 # Mark all dcp files as not used in implementation to prevent them from being

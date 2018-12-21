@@ -15,7 +15,7 @@ architecture Dataflow of DEBOUNCER is
 begin
   process(DEB_CLK)
   begin
-    if (rising_edge(DEB_CLK)) then
+    if (falling_edge(DEB_CLK)) then
       if (DEB_RESET = '1') then
         Q1 <= '0';
         Q2 <= '0';
