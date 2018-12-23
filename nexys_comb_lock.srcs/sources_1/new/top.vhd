@@ -71,6 +71,9 @@ architecture Structural of top is
       KEY_ACTIVATE_PART : in  std_logic;
       KEY_CONFIRM       : in  std_logic;
       DR_SENSOR         : in  std_logic;
+      -- Random numbers operations
+      FSM_RAND_EN       : out std_logic;
+      FSM_RAND          : in  std_logic_vector(5 downto 0);
       -- Signals to display
       FSM_GFX_OPCODE    : out std_logic_vector(2 downto 0);
       FSM_GFX_DATA      : out std_logic_vector(19 downto 0);
@@ -78,6 +81,18 @@ architecture Structural of top is
       LATCH_DRIVE       : out std_logic
       );
   end component;
+
+  component RAND_GEN is
+    port(
+      -- Unscaled clock
+      RAND_CLK   : in  std_logic;
+      -- Latch new random numbers
+      RAND_LATCH : in  std_logic;
+      -- Output
+      RAND_OUT   : out std_logic_vector(5 downto 0)  -- XXX_XXX 4..0 in each group
+      );
+  end component;
+
 
   signal CLK_SEG_Signal    : std_logic;
   signal CLK_USER_Signal   : std_logic;
@@ -87,6 +102,8 @@ architecture Structural of top is
   signal GFX_BIN_Signal    : std_logic_vector(31 downto 0);
   signal GFX_EXT_Signal    : std_logic_vector(7 downto 0);
   signal BTNS_Signal       : std_logic_vector(3 downto 0);
+  signal RAND_EN_Signal    : std_logic;
+  signal RAND_DATA_Signal  : std_logic_vector(5 downto 0);
 
 begin
 
@@ -125,12 +142,20 @@ begin
     FSM_CLK           => CLK_USER_Signal,
     FSM_DELAY_S       => CLK_SECOND_Signal,
     KEYPAD            => SWITCHES,
+    FSM_RAND_EN       => RAND_EN_Signal,
+    FSM_RAND          => RAND_DATA_Signal,
     DR_SENSOR         => SENSOR,
     FSM_GFX_OPCODE    => GFX_OPCODE_Signal,
     FSM_GFX_DATA      => GFX_DATA_Signal,
     KEY_ACTIVATE_NORM => BTNS_Signal(0),
     KEY_ACTIVATE_PART => BTNS_Signal(2),
     KEY_CONFIRM       => BTNS_Signal(1)
+    );
+
+  RAND_GEN_Inst : RAND_GEN port map(
+    RAND_CLK   => CLK100MHZ,
+    RAND_LATCH => RAND_EN_Signal,
+    RAND_OUT   => RAND_DATA_Signal
     );
 
   -- LED17   <= BTNS_Signal(2 downto 0);
