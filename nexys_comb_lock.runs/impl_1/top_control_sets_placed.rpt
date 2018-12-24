@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date         : Sun Dec 23 00:57:50 2018
+| Date         : Sun Dec 23 23:00:24 2018
 | Host         : Aurora-St-Plus running 64-bit Ubuntu 16.04.5 LTS
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,8 +23,8 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Number of unique control sets                            |    17 |
-| Unused register locations in slices containing registers |    42 |
+| Number of unique control sets                            |    22 |
+| Unused register locations in slices containing registers |    60 |
 +----------------------------------------------------------+-------+
 
 
@@ -34,13 +34,12 @@ Table of Contents
 +--------+--------------+
 | Fanout | Control Sets |
 +--------+--------------+
-|      2 |            1 |
-|      6 |            2 |
-|      8 |            6 |
+|      2 |            5 |
+|      8 |            9 |
 |     10 |            1 |
-|     12 |            2 |
+|     12 |            1 |
 |     14 |            1 |
-|    16+ |            4 |
+|    16+ |            5 |
 +--------+--------------+
 
 
@@ -50,9 +49,9 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             170 |           31 |
+| No           | No                    | No                     |             200 |           31 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              44 |            7 |
+| No           | Yes                   | No                     |              68 |           16 |
 | Yes          | No                    | No                     |              48 |            8 |
 | Yes          | No                    | Yes                    |               0 |            0 |
 | Yes          | Yes                   | No                     |               0 |            0 |
@@ -62,26 +61,31 @@ Table of Contents
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------------------------------------------------+------------------------------------------+-----------------------------------+------------------+----------------+
-|                       Clock Signal                       |               Enable Signal              |          Set/Reset Signal         | Slice Load Count | Bel Load Count |
-+----------------------------------------------------------+------------------------------------------+-----------------------------------+------------------+----------------+
-|  DEB_Array[0].DEBOUNCER_Inst/FSM_sequential_State_reg[0] |                                          |                                   |                1 |              2 |
-|  RAND_GEN_Inst/Count_Reg_0[2]                            |                                          |                                   |                1 |              6 |
-|  FSM_Inst/BUF_Pointer_reg[2]_i_2_n_0                     |                                          |                                   |                1 |              6 |
-|  DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode_reg[0]         | FSM_Inst/BUF_Passcode[3]_i_1_n_0         |                                   |                1 |              8 |
-|  DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode_reg[0]         | FSM_Inst/BUF_Passcode[7]_i_1_n_0         |                                   |                1 |              8 |
-|  DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode_reg[0]         | FSM_Inst/BUF_Passcode[19]_i_1_n_0        |                                   |                1 |              8 |
-|  DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode_reg[0]         | FSM_Inst/BUF_Passcode[15]_i_1_n_0        |                                   |                1 |              8 |
-|  DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode_reg[0]         | FSM_Inst/BUF_Passcode[11]_i_1_n_0        |                                   |                1 |              8 |
-|  CLK_USER_Signal_BUFG                                    | FSM_Inst/FSM_sequential_State[3]_i_1_n_0 |                                   |                3 |              8 |
-| ~CLK_USER_Signal_BUFG                                    |                                          | CLOCK_GEN_Inst/clear              |                1 |             10 |
-|  CLK_USER_Signal_BUFG                                    |                                          |                                   |                3 |             12 |
-|  DEB_Array[2].DEBOUNCER_Inst/RAND_OUT_reg[0]             |                                          |                                   |                2 |             12 |
-|  CLOCK_GEN_Inst/User_Counter_reg[0]_0                    |                                          |                                   |                2 |             14 |
-| ~CLK_USER_Signal_BUFG                                    |                                          |                                   |                5 |             20 |
-|  CLK_USER_Signal_BUFG                                    |                                          | FSM_Inst/FSM_GFX_DATA[19]_i_1_n_0 |                6 |             34 |
-|  CLK100MHZ_IBUF_BUFG                                     |                                          |                                   |                6 |             42 |
-|  FSM_Inst/E[0]                                           |                                          |                                   |               10 |             56 |
-+----------------------------------------------------------+------------------------------------------+-----------------------------------+------------------+----------------+
++--------------------------------------------------+------------------------------------------+--------------------------------------------+------------------+----------------+
+|                   Clock Signal                   |               Enable Signal              |              Set/Reset Signal              | Slice Load Count | Bel Load Count |
++--------------------------------------------------+------------------------------------------+--------------------------------------------+------------------+----------------+
+|                                                  |                                          | FSM_Inst/FSM_G_Data_Signal_reg[0]_i_2_n_0  |                1 |              2 |
+|                                                  |                                          | FSM_Inst/FSM_G_Data_Signal_reg[1]_i_2_n_0  |                1 |              2 |
+|                                                  |                                          | FSM_Inst/FSM_G_Data_Signal_reg[2]_i_2_n_0  |                1 |              2 |
+|  CLK_USER_Signal_BUFG                            |                                          | FSM_Inst/State[2]                          |                1 |              2 |
+|  FSM_Inst/FSM_Secure_Mode_Enable_reg_i_2_n_0     |                                          |                                            |                1 |              2 |
+|                                                  |                                          | FSM_Inst/FSM_G_Data_Signal_reg[19]_i_3_n_0 |                3 |              8 |
+|  CLK_USER_Signal_BUFG                            | FSM_Inst/FSM_sequential_State[3]_i_1_n_0 |                                            |                3 |              8 |
+| ~FSM_Inst/BUF_Passcode_Part_reg[7]_0             |                                          | RAND_GEN_Inst/SS[0]                        |                2 |              8 |
+| ~FSM_Inst/BUF_Passcode_Part_reg[7]_0             |                                          | RAND_GEN_Inst/SS[1]                        |                2 |              8 |
+|  DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode_reg[0] | FSM_Inst/BUF_Passcode[7]_i_1_n_0         |                                            |                1 |              8 |
+|  DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode_reg[0] | FSM_Inst/BUF_Passcode[3]_i_1_n_0         |                                            |                1 |              8 |
+|  DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode_reg[0] | FSM_Inst/BUF_Passcode[19]_i_1_n_0        |                                            |                1 |              8 |
+|  DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode_reg[0] | FSM_Inst/BUF_Passcode[15]_i_1_n_0        |                                            |                1 |              8 |
+|  DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode_reg[0] | FSM_Inst/BUF_Passcode[11]_i_1_n_0        |                                            |                1 |              8 |
+| ~CLK_USER_Signal_BUFG                            |                                          | CLOCK_GEN_Inst/clear                       |                1 |             10 |
+|  FSM_Inst/BUF_Passcode_Part_reg[7]_0             |                                          |                                            |                1 |             12 |
+|  CLOCK_GEN_Inst/User_Counter_reg[0]_0            |                                          |                                            |                2 |             14 |
+| ~CLK_USER_Signal_BUFG                            |                                          |                                            |                4 |             20 |
+|  FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2_n_0      |                                          | FSM_Inst/FSM_G_Data_Signal_reg[19]_i_3_n_0 |                4 |             26 |
+|  CLK_USER_Signal_BUFG                            |                                          |                                            |                5 |             44 |
+|  CLK100MHZ_IBUF_BUFG                             |                                          |                                            |                6 |             52 |
+|  FSM_Inst/E[0]                                   |                                          |                                            |               12 |             56 |
++--------------------------------------------------+------------------------------------------+--------------------------------------------+------------------+----------------+
 
 

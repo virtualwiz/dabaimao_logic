@@ -45,14 +45,14 @@ begin
         GFX_BIN <= x"dec412ed";
       when "101" =>                     -- CodeXX**
         GFX_EXT <= "00000011";
-        if GFX_DATA = 0 then
-          GFX_BIN <= x"c0de" & GFX_DATA(8 downto 1) & x"ff";
-        elsif GFX_DATA = 1 then
-          GFX_BIN <= x"c0de" & GFX_DATA(8 downto 1) & x"ff";
+        if GFX_DATA(0) = '0' then
+          GFX_BIN <= x"c0de" & (x"55" - GFX_DATA(8 downto 1)) & x"ff";
+        elsif GFX_DATA(0) = '1' then
+          GFX_BIN <= x"c0de" & (x"55" - GFX_DATA(8 downto 1)) & x"f0";
         end if;
       when "110" =>                     -- 2 Digits
         GFX_EXT <= "00111111";
-        GFX_BIN <= GFX_DATA(7 downto 0) & x"ffffff";
+        GFX_BIN <= GFX_DATA(19 downto 12) & x"ffffff";
       when others =>
         GFX_EXT <= "11111111";
         GFX_BIN <= x"00000000";

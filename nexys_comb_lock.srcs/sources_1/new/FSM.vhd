@@ -15,13 +15,14 @@ entity FSM is
     KEY_CONFIRM       : in  std_logic;
     DR_SENSOR         : in  std_logic;
     -- Random numbers operations
-    FSM_RAND_EN       : out std_logic;
     FSM_RAND          : in  std_logic_vector(5 downto 0);
+    FSM_RAND_EN       : out std_logic;
     -- Signals to display
     FSM_GFX_OPCODE    : out std_logic_vector(2 downto 0);
     FSM_GFX_DATA      : out std_logic_vector(19 downto 0);
     -- Signals to servo motor
-    LATCH_DRIVE       : out std_logic
+    LATCH_DRIVE       : out std_logic;
+    DEBUG             : out std_logic_vector(5 downto 0)
     );
 end FSM;
 
@@ -53,32 +54,41 @@ architecture Behavioural of FSM is
 -- Use descriptive names for the States, like st1_reset, st2_search
   type TypeDef_State is (
     st0_idle,
-    st1_p1, st2_p2, st3_p3, st4_p4, st5_p5,
+    st1_p1, st2_p2, st3_p3, st4_p4,
     st6_accepted, st7_accepted_code_disp,
     st8_declined, st9_declined_code_disp,
     stX_activate,
-    stC_compare
+    stC_compare,
+    stR_rand_gen
     );
   signal State, Next_State      : TypeDef_State;
 -- Declare internal signals for all outputs of the State-machine
   signal LATCH_Signal           : std_logic;
+  signal RAND_EN_Signal         : std_logic;
   signal FSM_G_Data_Signal      : std_logic_vector(19 downto 0);
   signal FSM_G_Opcode_Signal    : std_logic_vector(2 downto 0);
 -- Passcode buffer registers
   signal BUF_Passcode           : std_logic_vector(19 downto 0);
   signal BUF_Passcode_Preset    : std_logic_vector(19 downto 0) := x"24013";
-  signal BUF_Passcode_Part      : std_logic_vector(7 downto 0)  := x"00";
+  signal BUF_Passcode_Part      : std_logic_vector(7 downto 0);
 -- Mode flag
   signal FSM_Secure_Mode_Enable : std_logic;
 -- Register pointers
   signal BUF_Pointer            : std_logic_vector(2 downto 0);
 begin
 
-  FSM_RAND_EN                   <= KEY_ACTIVATE_PART;
-  BUF_Passcode_Part(7 downto 4) <= BUF_Addressing(BUF_Passcode, FSM_RAND(5 downto 3));
-  BUF_Passcode_Part(3 downto 0) <= BUF_Addressing(BUF_Passcode, FSM_RAND(2 downto 0));
+  DEBUG       <= FSM_RAND;
+  FSM_RAND_EN <= RAND_EN_Signal;
 
-  process (KEY_CONFIRM)
+  process (RAND_EN_Signal, FSM_RAND, BUF_Passcode)
+  begin
+    if falling_edge(RAND_EN_Signal) then
+      BUF_Passcode_Part(7 downto 4) <= BUF_Addressing(BUF_Passcode, FSM_RAND(5 downto 3));
+      BUF_Passcode_Part(3 downto 0) <= BUF_Addressing(BUF_Passcode, FSM_RAND(2 downto 0));
+    end if;
+  end process;
+
+  process (KEY_CONFIRM, KEYPAD)
   begin
     if rising_edge(KEY_CONFIRM) then
       case BUF_Pointer is
@@ -98,6 +108,7 @@ begin
     end if;
   end process;
 
+
   SYNC_PROC : process (FSM_CLK)
   begin
     if (rising_edge(FSM_CLK)) then
@@ -108,6 +119,12 @@ begin
     end if;
   end process;
 
+--   ___  _   _ _____ ____  _   _ _____
+--  / _ \| | | |_   _|  _ \| | | |_   _|
+-- | | | | | | | | | | |_) | | | | | |
+-- | |_| | |_| | | | |  __/| |_| | | |
+--  \___/ \___/  |_| |_|    \___/  |_|
+
   --MEALY State-Machine - Outputs based on State and inputs
   OUTPUT_DECODE : process (State, KEY_ACTIVATE_NORM, KEY_ACTIVATE_PART, KEY_CONFIRM)
   begin
@@ -117,10 +134,21 @@ begin
       LATCH_Signal        <= '0';
       FSM_G_Opcode_Signal <= b"000";
       FSM_G_Data_Signal   <= (others => '0');
-    elsif State = st1_p1 then
+    elsif state = stR_rand_gen then
       LATCH_Signal        <= '0';
-      FSM_G_Opcode_Signal <= b"001";
-      FSM_G_Data_Signal   <= x"00001";
+      FSM_G_Opcode_Signal <= b"101";
+      FSM_G_Data_Signal   <= (others => '0');
+    elsif State = st1_p1 then
+      LATCH_Signal <= '0';
+      if FSM_Secure_Mode_Enable = '0' then
+        FSM_G_Opcode_Signal <= b"001";
+        FSM_G_Data_Signal   <= x"00001";
+      else
+        FSM_G_Opcode_Signal           <= b"101";
+        FSM_G_Data_Signal(7 downto 5) <= FSM_RAND(5 downto 3);
+        FSM_G_Data_Signal(3 downto 1) <= FSM_RAND(2 downto 0);
+        FSM_G_Data_Signal(0)          <= '1';
+      end if;
     elsif State = st2_p2 then
       LATCH_Signal        <= '0';
       FSM_G_Opcode_Signal <= b"001";
@@ -138,21 +166,36 @@ begin
       FSM_G_Opcode_Signal <= b"011";
       FSM_G_Data_Signal   <= (others => '0');
     elsif State = st7_accepted_code_disp then  -- Display entered passcode 5 digits
-      LATCH_Signal        <= '1';
-      FSM_G_Opcode_Signal <= b"010";
-      FSM_G_Data_Signal   <= BUF_Passcode;
+      LATCH_Signal      <= '1';
+      FSM_G_Data_Signal <= BUF_Passcode;
+      if FSM_Secure_Mode_Enable = '0' then
+        FSM_G_Opcode_Signal <= b"010";
+      else
+        FSM_G_Opcode_Signal <= b"110";
+      end if;
     elsif State = st8_declined then     -- Passcode declined, do not unlock
       LATCH_Signal        <= '0';
       FSM_G_Opcode_Signal <= b"100";
       FSM_G_Data_Signal   <= (others => '0');
     elsif State = st9_declined_code_disp then  -- Display entered passcode 2 digits
-      LATCH_Signal        <= '0';
-      FSM_G_Opcode_Signal <= b"010";
-      FSM_G_Data_Signal   <= BUF_Passcode;
+      LATCH_Signal      <= '0';
+      FSM_G_Data_Signal <= BUF_Passcode;
+      if FSM_Secure_Mode_Enable = '0' then
+        FSM_G_Opcode_Signal <= b"010";
+      else
+        FSM_G_Opcode_Signal <= b"110";
+      end if;
     elsif State = stX_activate then
-      LATCH_Signal        <= '0';
-      FSM_G_Opcode_Signal <= b"001";
-      FSM_G_Data_Signal   <= x"00000";
+      LATCH_Signal <= '0';
+      if FSM_Secure_Mode_Enable = '0' then
+        FSM_G_Opcode_Signal <= b"001";
+        FSM_G_Data_Signal   <= x"00000";
+      else
+        FSM_G_Opcode_Signal           <= b"101";
+        FSM_G_Data_Signal(7 downto 5) <= FSM_RAND(5 downto 3);
+        FSM_G_Data_Signal(3 downto 1) <= FSM_RAND(2 downto 0);
+        FSM_G_Data_Signal(0)          <= '0';
+      end if;
     else
       LATCH_Signal        <= '0';
       FSM_G_Opcode_Signal <= b"111";
@@ -160,7 +203,13 @@ begin
     end if;
   end process;
 
-  NEXT_STATE_DECODE : process (State, KEY_ACTIVATE_NORM, KEY_ACTIVATE_PART, KEY_CONFIRM)
+--  _____ ____      _    _   _ ____ ___ _____ ___ ___  _   _
+-- |_   _|  _ \    / \  | \ | / ___|_ _|_   _|_ _/ _ \| \ | |
+--   | | | |_) |  / _ \ |  \| \___ \| |  | |  | | | | |  \| |
+--   | | |  _ <  / ___ \| |\  |___) | |  | |  | | |_| | |\  |
+--   |_| |_| \_\/_/   \_\_| \_|____/___| |_| |___\___/|_| \_|
+
+  NEXT_STATE_DECODE : process (State, KEY_ACTIVATE_NORM, KEY_ACTIVATE_PART, KEY_CONFIRM, FSM_RAND, FSM_Secure_Mode_Enable)
   begin
     --declare default State for Next_State to avoid latches
     Next_State <= State;                --default is to stay in current State
@@ -168,47 +217,62 @@ begin
     --below is a simple example
     case (State) is
       when st0_idle =>
+        BUF_Pointer    <= "000";
+        RAND_EN_Signal <= '0';
         if KEY_ACTIVATE_NORM = '1' then
           FSM_Secure_Mode_Enable <= '0';
           Next_State             <= stX_activate;
         elsif KEY_ACTIVATE_PART = '1' then
           FSM_Secure_Mode_Enable <= '1';
-          Next_State             <= stX_activate;
+          Next_State             <= stR_rand_gen;
         end if;
+      when stR_rand_gen =>
+        BUF_Pointer    <= "000";
+        RAND_EN_Signal <= '1';
+        Next_State     <= stX_activate;
       when stX_activate =>
-        BUF_Pointer <= "000";
-        if KEY_CONFIRM = '1' then
+        BUF_Pointer    <= "000";
+        RAND_EN_Signal <= '0';
+        if (FSM_Secure_Mode_Enable = '1' and (
+          FSM_RAND(5 downto 3) > "100" or
+          FSM_RAND(2 downto 0) > "100" or
+          FSM_RAND(5 downto 3) = FSM_RAND(2 downto 0))
+            ) then
+          Next_State <= stR_rand_gen;
+        elsif KEY_CONFIRM = '1' then
           Next_State <= st1_p1;
         end if;
       when st1_p1 =>
-        BUF_Pointer <= "001";
+        BUF_Pointer    <= "001";
+        RAND_EN_Signal <= '0';
         if KEY_CONFIRM = '1' then
           Next_State <= st2_p2;
         end if;
       when st2_p2 =>
+        BUF_Pointer    <= "010";
+        RAND_EN_Signal <= '0';
         if FSM_Secure_Mode_Enable = '1' then
-          BUF_Pointer <= "000";
-          Next_State  <= stC_compare;
+          Next_State <= stC_compare;
         else
-          BUF_Pointer <= "010";
           if KEY_CONFIRM = '1' then
             Next_State <= st3_p3;
           end if;
         end if;
       when st3_p3 =>
-        BUF_Pointer <= "011";
+        BUF_Pointer    <= "011";
+        RAND_EN_Signal <= '0';
         if KEY_CONFIRM = '1' then
           Next_State <= st4_p4;
         end if;
       when st4_p4 =>
-        BUF_Pointer <= "100";
+        BUF_Pointer    <= "100";
+        RAND_EN_Signal <= '0';
         if KEY_CONFIRM = '1' then
-          Next_State <= st5_p5;
+          Next_State <= stC_compare;
         end if;
-      when st5_p5 =>
-        BUF_Pointer <= "000";
-        Next_State  <= stC_compare;
       when stC_compare =>
+        BUF_Pointer    <= "000";
+        RAND_EN_Signal <= '0';
         if FSM_Secure_Mode_Enable = '0' then
           if BUF_Passcode = BUF_Passcode_Preset then
             Next_State <= st6_accepted;
@@ -223,31 +287,41 @@ begin
           end if;
         end if;
       when st6_accepted =>
+        BUF_Pointer    <= "000";
+        RAND_EN_Signal <= '0';
         if FSM_DELAY_S = '1' then
           Next_State <= st7_accepted_code_disp;
-        elsif DR_SENSOR = '1' then
+        elsif DR_SENSOR = '1' or KEY_CONFIRM = '1' then
           Next_State <= st0_idle;
         end if;
       when st8_declined =>
+        BUF_Pointer    <= "000";
+        RAND_EN_Signal <= '0';
         if FSM_DELAY_S = '1' then
           Next_State <= st9_declined_code_disp;
         elsif KEY_CONFIRM = '1' then
           Next_State <= st0_idle;
         end if;
       when st7_accepted_code_disp =>
+        BUF_Pointer    <= "000";
+        RAND_EN_Signal <= '0';
         if FSM_DELAY_S = '1' then
           Next_State <= st6_accepted;
-        elsif DR_SENSOR = '1' then
+        elsif DR_SENSOR = '1' or KEY_CONFIRM = '1' then
           Next_State <= st0_idle;
         end if;
       when st9_declined_code_disp =>
+        BUF_Pointer    <= "000";
+        RAND_EN_Signal <= '0';
         if FSM_DELAY_S = '1' then
           Next_State <= st8_declined;
         elsif KEY_CONFIRM = '1' then
           Next_State <= st0_idle;
         end if;
       when others =>
-        Next_State <= st0_idle;
+        BUF_Pointer    <= "000";
+        RAND_EN_Signal <= '0';
+        Next_State     <= st0_idle;
     end case;
   end process;
 

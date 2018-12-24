@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date         : Sun Dec 23 00:57:46 2018
+| Date         : Sun Dec 23 23:00:20 2018
 | Host         : Aurora-St-Plus running 64-bit Ubuntu 16.04.5 LTS
 | Command      : report_drc -file top_drc_opted.rpt -pb top_drc_opted.pb -rpx top_drc_opted.rpx
 | Design       : top
@@ -64,13 +64,16 @@ Related violations: <none>
 
 PLHOLDVIO-2#2 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT DEB_Array[2].DEBOUNCER_Inst/RAND_OUT[5]_i_1 is driving clock pin of 6 cells. This could lead to large hold time violations. First few involved cells are:
+A LUT FSM_Inst/RAND_OUT[5]_i_1 is driving clock pin of 14 cells. This could lead to large hold time violations. First few involved cells are:
+    FSM_Inst/BUF_Passcode_Part_reg[0] {FDSE}
+    FSM_Inst/BUF_Passcode_Part_reg[1] {FDSE}
+    FSM_Inst/BUF_Passcode_Part_reg[2] {FDSE}
+    FSM_Inst/BUF_Passcode_Part_reg[3] {FDSE}
+    FSM_Inst/BUF_Passcode_Part_reg[4] {FDSE}
+    FSM_Inst/BUF_Passcode_Part_reg[5] {FDSE}
+    FSM_Inst/BUF_Passcode_Part_reg[6] {FDSE}
+    FSM_Inst/BUF_Passcode_Part_reg[7] {FDSE}
     RAND_GEN_Inst/RAND_OUT_reg[0] {FDRE}
-    RAND_GEN_Inst/RAND_OUT_reg[1] {FDRE}
-    RAND_GEN_Inst/RAND_OUT_reg[2] {FDRE}
-    RAND_GEN_Inst/RAND_OUT_reg[3] {FDRE}
-    RAND_GEN_Inst/RAND_OUT_reg[4] {FDRE}
-    RAND_GEN_Inst/RAND_OUT_reg[5] {FDRE}
 
 Related violations: <none>
 

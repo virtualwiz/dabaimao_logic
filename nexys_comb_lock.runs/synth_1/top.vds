@@ -2,8 +2,8 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Sun Dec 23 00:56:25 2018
-# Process ID: 32151
+# Start of session at: Sun Dec 23 22:58:55 2018
+# Process ID: 29101
 # Current directory: /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.runs/synth_1
 # Command line: vivado -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file: /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.runs/synth_1/top.vds
@@ -15,9 +15,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 32157 
+INFO: Helper process launched with PID 29110 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 1262.145 ; gain = 81.875 ; free physical = 1306 ; free virtual = 11145
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1262.145 ; gain = 81.875 ; free physical = 1092 ; free virtual = 9576
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'top' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/top.vhd:19]
 INFO: [Synth 8-3491] module 'CLOCK_GEN' declared at '/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/CLOCK_GEN.vhd:5' bound to instance 'CLOCK_GEN_Inst' of component 'CLOCK_GEN' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/top.vhd:110]
@@ -36,18 +36,19 @@ INFO: [Synth 8-3491] module 'DEBOUNCER' declared at '/home/matthew/Documents/nex
 INFO: [Synth 8-3491] module 'DEBOUNCER' declared at '/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/DEBOUNCER.vhd:4' bound to instance 'DEBOUNCER_Inst' of component 'DEBOUNCER' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/top.vhd:134]
 INFO: [Synth 8-3491] module 'DEBOUNCER' declared at '/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/DEBOUNCER.vhd:4' bound to instance 'DEBOUNCER_Inst' of component 'DEBOUNCER' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/top.vhd:134]
 INFO: [Synth 8-3491] module 'FSM' declared at '/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:6' bound to instance 'FSM_Inst' of component 'FSM' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/top.vhd:141]
-INFO: [Synth 8-638] synthesizing module 'FSM' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:28]
-WARNING: [Synth 8-614] signal 'BUF_Passcode' is read in the process but is not in the sensitivity list [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:112]
-WARNING: [Synth 8-614] signal 'FSM_Secure_Mode_Enable' is read in the process but is not in the sensitivity list [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:163]
-WARNING: [Synth 8-614] signal 'BUF_Passcode' is read in the process but is not in the sensitivity list [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:163]
-WARNING: [Synth 8-614] signal 'BUF_Passcode_Preset' is read in the process but is not in the sensitivity list [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:163]
-WARNING: [Synth 8-614] signal 'BUF_Passcode_Part' is read in the process but is not in the sensitivity list [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:163]
-WARNING: [Synth 8-614] signal 'FSM_DELAY_S' is read in the process but is not in the sensitivity list [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:163]
-WARNING: [Synth 8-614] signal 'DR_SENSOR' is read in the process but is not in the sensitivity list [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:163]
-INFO: [Synth 8-256] done synthesizing module 'FSM' (5#1) [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:28]
-INFO: [Synth 8-3491] module 'RAND_GEN' declared at '/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/RAND_GEN.vhd:5' bound to instance 'RAND_GEN_Inst' of component 'RAND_GEN' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/top.vhd:155]
-INFO: [Synth 8-638] synthesizing module 'RAND_GEN' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/RAND_GEN.vhd:16]
-INFO: [Synth 8-256] done synthesizing module 'RAND_GEN' (6#1) [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/RAND_GEN.vhd:16]
+INFO: [Synth 8-638] synthesizing module 'FSM' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:29]
+WARNING: [Synth 8-614] signal 'FSM_Secure_Mode_Enable' is read in the process but is not in the sensitivity list [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:129]
+WARNING: [Synth 8-614] signal 'FSM_RAND' is read in the process but is not in the sensitivity list [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:129]
+WARNING: [Synth 8-614] signal 'BUF_Passcode' is read in the process but is not in the sensitivity list [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:129]
+WARNING: [Synth 8-614] signal 'BUF_Passcode' is read in the process but is not in the sensitivity list [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:212]
+WARNING: [Synth 8-614] signal 'BUF_Passcode_Preset' is read in the process but is not in the sensitivity list [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:212]
+WARNING: [Synth 8-614] signal 'BUF_Passcode_Part' is read in the process but is not in the sensitivity list [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:212]
+WARNING: [Synth 8-614] signal 'FSM_DELAY_S' is read in the process but is not in the sensitivity list [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:212]
+WARNING: [Synth 8-614] signal 'DR_SENSOR' is read in the process but is not in the sensitivity list [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:212]
+INFO: [Synth 8-256] done synthesizing module 'FSM' (5#1) [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:29]
+INFO: [Synth 8-3491] module 'RAND_GEN' declared at '/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/RAND_GEN.vhd:5' bound to instance 'RAND_GEN_Inst' of component 'RAND_GEN' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/top.vhd:156]
+INFO: [Synth 8-638] synthesizing module 'RAND_GEN' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/RAND_GEN.vhd:15]
+INFO: [Synth 8-256] done synthesizing module 'RAND_GEN' (6#1) [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/RAND_GEN.vhd:15]
 WARNING: [Synth 8-3848] Net LED17 in module/entity top does not have driver. [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/top.vhd:13]
 WARNING: [Synth 8-3848] Net LED16_R in module/entity top does not have driver. [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/top.vhd:14]
 INFO: [Synth 8-256] done synthesizing module 'top' (7#1) [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/top.vhd:19]
@@ -65,11 +66,9 @@ WARNING: [Synth 8-3331] design top has unconnected port LEDS[9]
 WARNING: [Synth 8-3331] design top has unconnected port LEDS[8]
 WARNING: [Synth 8-3331] design top has unconnected port LEDS[7]
 WARNING: [Synth 8-3331] design top has unconnected port LEDS[6]
-WARNING: [Synth 8-3331] design top has unconnected port LEDS[5]
-WARNING: [Synth 8-3331] design top has unconnected port LEDS[4]
 WARNING: [Synth 8-3331] design top has unconnected port BTNS[4]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1306.770 ; gain = 126.500 ; free physical = 1316 ; free virtual = 11155
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1306.770 ; gain = 126.500 ; free physical = 1101 ; free virtual = 9585
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -82,10 +81,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1306.770 ; gain = 126.500 ; free physical = 1316 ; free virtual = 11155
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1306.770 ; gain = 126.500 ; free physical = 1101 ; free virtual = 9585
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1306.770 ; gain = 126.500 ; free physical = 1316 ; free virtual = 11155
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1306.770 ; gain = 126.500 ; free physical = 1101 ; free virtual = 9585
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -101,25 +100,29 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1674.582 ; gain = 0.000 ; free physical = 1051 ; free virtual = 10890
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1680.582 ; gain = 0.000 ; free physical = 803 ; free virtual = 9311
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:20 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 1129 ; free virtual = 10968
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:21 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 884 ; free virtual = 9390
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:20 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 1129 ; free virtual = 10968
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:21 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 884 ; free virtual = 9390
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:20 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 1131 ; free virtual = 10970
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:21 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 886 ; free virtual = 9391
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'State_reg' in module 'FSM'
 INFO: [Synth 8-5544] ROM "BUF_Pointer" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "RAND_EN_Signal" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
@@ -127,36 +130,42 @@ INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because addre
 INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "BUF_Pointer" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "RAND_EN_Signal" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "Next_State" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "FSM_G_Opcode_Signal" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "BUF_Passcode" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "BUF_Pointer" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "FSM_G_Opcode_Signal" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "FSM_G_Data_Signal" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 WARNING: [Synth 8-327] inferring latch for variable 'GFX_BIN_reg' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/DISP_GFX.vhd:23]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
                 st0_idle |                             0000 |                             0000
-            stx_activate |                             0001 |                             1010
-                  st1_p1 |                             0010 |                             0001
-                  st2_p2 |                             0011 |                             0010
-                  st3_p3 |                             0100 |                             0011
-                  st4_p4 |                             0101 |                             0100
-                  st5_p5 |                             0110 |                             0101
-             stc_compare |                             0111 |                             1011
-            st6_accepted |                             1000 |                             0110
-  st7_accepted_code_disp |                             1001 |                             0111
-            st8_declined |                             1010 |                             1000
-  st9_declined_code_disp |                             1011 |                             1001
+            str_rand_gen |                             0001 |                             1011
+            stx_activate |                             0010 |                             1001
+                  st1_p1 |                             0011 |                             0001
+                  st2_p2 |                             0100 |                             0010
+                  st3_p3 |                             0101 |                             0011
+                  st4_p4 |                             0110 |                             0100
+             stc_compare |                             0111 |                             1010
+            st6_accepted |                             1000 |                             0101
+  st7_accepted_code_disp |                             1001 |                             0110
+            st8_declined |                             1010 |                             0111
+  st9_declined_code_disp |                             1011 |                             1000
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'State_reg' using encoding 'sequential' in module 'FSM'
-WARNING: [Synth 8-327] inferring latch for variable 'FSM_Secure_Mode_Enable_reg' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:172]
-WARNING: [Synth 8-327] inferring latch for variable 'BUF_Pointer_reg' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:84]
+WARNING: [Synth 8-327] inferring latch for variable 'FSM_Secure_Mode_Enable_reg' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:223]
+WARNING: [Synth 8-327] inferring latch for variable 'FSM_G_Data_Signal_reg' [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:117]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:20 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 1124 ; free virtual = 10962
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:21 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 876 ; free virtual = 9382
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -169,34 +178,38 @@ Start RTL Component Statistics
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
+	   2 Input      8 Bit       Adders := 1     
 	   2 Input      5 Bit       Adders := 1     
 	   2 Input      4 Bit       Adders := 1     
-	   2 Input      3 Bit       Adders := 3     
+	   2 Input      3 Bit       Adders := 1     
++---XORs : 
+	   3 Input      1 Bit         XORs := 1     
 +---Registers : 
 	               20 Bit    Registers := 2     
+	                8 Bit    Registers := 2     
 	                6 Bit    Registers := 1     
 	                5 Bit    Registers := 1     
 	                4 Bit    Registers := 1     
-	                3 Bit    Registers := 4     
+	                3 Bit    Registers := 2     
 	                1 Bit    Registers := 14    
 +---Muxes : 
 	   5 Input     32 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input     20 Bit        Muxes := 3     
 	   6 Input     20 Bit        Muxes := 1     
-	   9 Input     20 Bit        Muxes := 1     
-	  10 Input     20 Bit        Muxes := 1     
+	  10 Input     20 Bit        Muxes := 2     
+	  12 Input     20 Bit        Muxes := 1     
 	   8 Input      8 Bit        Muxes := 2     
+	   6 Input      4 Bit        Muxes := 2     
+	   4 Input      4 Bit        Muxes := 2     
+	   2 Input      4 Bit        Muxes := 12    
 	  12 Input      4 Bit        Muxes := 1     
-	   2 Input      4 Bit        Muxes := 7     
-	  12 Input      3 Bit        Muxes := 1     
-	   8 Input      3 Bit        Muxes := 1     
-	  10 Input      3 Bit        Muxes := 1     
-	   2 Input      3 Bit        Muxes := 1     
-	   2 Input      2 Bit        Muxes := 1     
+	  12 Input      3 Bit        Muxes := 2     
 	   8 Input      1 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 9     
-	  12 Input      1 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 11    
+	   7 Input      1 Bit        Muxes := 1     
 	   3 Input      1 Bit        Muxes := 1     
-	   6 Input      1 Bit        Muxes := 1     
+	  12 Input      1 Bit        Muxes := 3     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -223,8 +236,11 @@ Detailed RTL Component Info :
 	   8 Input      8 Bit        Muxes := 1     
 Module DISP_GFX 
 Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      8 Bit       Adders := 1     
 +---Muxes : 
 	   5 Input     32 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 1     
 	   8 Input      8 Bit        Muxes := 1     
 	   8 Input      1 Bit        Muxes := 1     
 	   2 Input      1 Bit        Muxes := 5     
@@ -232,31 +248,30 @@ Module FSM
 Detailed RTL Component Info : 
 +---Registers : 
 	               20 Bit    Registers := 2     
+	                8 Bit    Registers := 1     
 	                3 Bit    Registers := 1     
 	                1 Bit    Registers := 1     
 +---Muxes : 
+	   2 Input     20 Bit        Muxes := 3     
 	   6 Input     20 Bit        Muxes := 1     
-	   9 Input     20 Bit        Muxes := 1     
-	  10 Input     20 Bit        Muxes := 1     
+	  10 Input     20 Bit        Muxes := 2     
+	  12 Input     20 Bit        Muxes := 1     
+	   6 Input      4 Bit        Muxes := 2     
+	   4 Input      4 Bit        Muxes := 2     
+	   2 Input      4 Bit        Muxes := 12    
 	  12 Input      4 Bit        Muxes := 1     
-	   2 Input      4 Bit        Muxes := 7     
-	  12 Input      3 Bit        Muxes := 1     
-	   8 Input      3 Bit        Muxes := 1     
-	  10 Input      3 Bit        Muxes := 1     
-	   2 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 4     
-	  12 Input      1 Bit        Muxes := 3     
+	  12 Input      3 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 6     
+	   7 Input      1 Bit        Muxes := 1     
 	   3 Input      1 Bit        Muxes := 1     
-	   6 Input      1 Bit        Muxes := 1     
+	  12 Input      1 Bit        Muxes := 3     
 Module RAND_GEN 
 Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input      3 Bit       Adders := 2     
++---XORs : 
+	   3 Input      1 Bit         XORs := 1     
 +---Registers : 
+	                8 Bit    Registers := 1     
 	                6 Bit    Registers := 1     
-	                3 Bit    Registers := 2     
-+---Muxes : 
-	   2 Input      3 Bit        Muxes := 1     
 Module DEBOUNCER 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -277,7 +292,7 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 Warning: Parallel synthesis criteria is not met 
-WARNING: [Synth 8-6014] Unused sequential element FSM_Inst/LATCH_DRIVE_reg was removed.  [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:105]
+WARNING: [Synth 8-6014] Unused sequential element FSM_Inst/LATCH_DRIVE_reg was removed.  [/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.srcs/sources_1/new/FSM.vhd:116]
 INFO: [Synth 8-5544] ROM "FSM_Inst/p_0_out" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 WARNING: [Synth 8-3331] design top has unconnected port LED17[2]
 WARNING: [Synth 8-3331] design top has unconnected port LED17[1]
@@ -293,8 +308,6 @@ WARNING: [Synth 8-3331] design top has unconnected port LEDS[9]
 WARNING: [Synth 8-3331] design top has unconnected port LEDS[8]
 WARNING: [Synth 8-3331] design top has unconnected port LEDS[7]
 WARNING: [Synth 8-3331] design top has unconnected port LEDS[6]
-WARNING: [Synth 8-3331] design top has unconnected port LEDS[5]
-WARNING: [Synth 8-3331] design top has unconnected port LEDS[4]
 WARNING: [Synth 8-3331] design top has unconnected port BTNS[4]
 INFO: [Synth 8-3886] merging instance 'DISP_GFX_Inst/GFX_BIN_reg[0]' (LD) to 'DISP_GFX_Inst/GFX_BIN_reg[3]'
 INFO: [Synth 8-3886] merging instance 'DISP_GFX_Inst/GFX_BIN_reg[5]' (LD) to 'DISP_GFX_Inst/GFX_BIN_reg[7]'
@@ -304,7 +317,7 @@ WARNING: [Synth 8-3332] Sequential element (DEB_Array[3].DEBOUNCER_Inst/Q1_reg) 
 WARNING: [Synth 8-3332] Sequential element (DEB_Array[3].DEBOUNCER_Inst/Q2_reg) is unused and will be removed from module top.
 WARNING: [Synth 8-3332] Sequential element (DEB_Array[3].DEBOUNCER_Inst/Q3_reg) is unused and will be removed from module top.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:21 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 1110 ; free virtual = 10951
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:22 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 862 ; free virtual = 9372
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -331,13 +344,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:28 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 987 ; free virtual = 10828
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:30 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 727 ; free virtual = 9247
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:28 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 987 ; free virtual = 10827
+Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:30 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 726 ; free virtual = 9246
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -349,7 +362,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:28 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 984 ; free virtual = 10825
+Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:30 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 724 ; free virtual = 9244
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -373,7 +386,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:16 ; elapsed = 00:00:29 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 984 ; free virtual = 10825
+Finished IO Insertion : Time (s): cpu = 00:00:17 ; elapsed = 00:00:30 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 724 ; free virtual = 9244
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -386,7 +399,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:16 ; elapsed = 00:00:29 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 984 ; free virtual = 10825
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:17 ; elapsed = 00:00:30 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 724 ; free virtual = 9244
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -398,25 +411,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:16 ; elapsed = 00:00:29 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 984 ; free virtual = 10825
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:17 ; elapsed = 00:00:30 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 724 ; free virtual = 9244
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:16 ; elapsed = 00:00:29 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 984 ; free virtual = 10825
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:17 ; elapsed = 00:00:30 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 724 ; free virtual = 9244
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:29 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 984 ; free virtual = 10825
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:17 ; elapsed = 00:00:30 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 724 ; free virtual = 9244
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:16 ; elapsed = 00:00:29 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 984 ; free virtual = 10825
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:17 ; elapsed = 00:00:30 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 724 ; free virtual = 9244
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -434,55 +447,58 @@ Report Cell Usage:
 +------+-------+------+
 |1     |BUFG   |     2|
 |2     |CARRY4 |     5|
-|3     |LUT1   |     6|
-|4     |LUT2   |    10|
-|5     |LUT3   |    24|
-|6     |LUT4   |    22|
-|7     |LUT5   |    37|
+|3     |LUT1   |     4|
+|4     |LUT2   |    21|
+|5     |LUT3   |    30|
+|6     |LUT4   |    41|
+|7     |LUT5   |    29|
 |8     |LUT6   |    46|
 |9     |MUXF7  |     4|
-|10    |FDRE   |    99|
-|11    |LD     |    32|
-|12    |IBUF   |     9|
-|13    |OBUF   |    20|
-|14    |OBUFT  |    16|
+|10    |FDRE   |   100|
+|11    |FDSE   |     9|
+|12    |LD     |    29|
+|13    |LDC    |    20|
+|14    |IBUF   |     9|
+|15    |OBUF   |    22|
+|16    |OBUFT  |    14|
 +------+-------+------+
 
 Report Instance Areas: 
 +------+--------------------------------+------------+------+
 |      |Instance                        |Module      |Cells |
 +------+--------------------------------+------------+------+
-|1     |top                             |            |   332|
+|1     |top                             |            |   385|
 |2     |  CLOCK_GEN_Inst                |CLOCK_GEN   |    44|
-|3     |  \DEB_Array[0].DEBOUNCER_Inst  |DEBOUNCER   |     4|
+|3     |  \DEB_Array[0].DEBOUNCER_Inst  |DEBOUNCER   |     5|
 |4     |  \DEB_Array[1].DEBOUNCER_Inst  |DEBOUNCER_0 |     5|
-|5     |  \DEB_Array[2].DEBOUNCER_Inst  |DEBOUNCER_1 |     5|
+|5     |  \DEB_Array[2].DEBOUNCER_Inst  |DEBOUNCER_1 |     4|
 |6     |  DISP_DRV_Inst                 |DISP_DRV    |    22|
 |7     |  DISP_GFX_Inst                 |DISP_GFX    |    40|
-|8     |  FSM_Inst                      |FSM         |   138|
-|9     |  RAND_GEN_Inst                 |RAND_GEN    |    27|
+|8     |  FSM_Inst                      |FSM         |   200|
+|9     |  RAND_GEN_Inst                 |RAND_GEN    |    18|
 +------+--------------------------------+------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:16 ; elapsed = 00:00:29 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 984 ; free virtual = 10825
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:17 ; elapsed = 00:00:30 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 724 ; free virtual = 9244
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 24 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 1674.582 ; gain = 126.500 ; free physical = 1038 ; free virtual = 10879
-Synthesis Optimization Complete : Time (s): cpu = 00:00:16 ; elapsed = 00:00:29 . Memory (MB): peak = 1674.582 ; gain = 494.312 ; free physical = 1038 ; free virtual = 10879
+Synthesis finished with 0 errors, 0 critical warnings and 22 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1680.582 ; gain = 126.500 ; free physical = 780 ; free virtual = 9298
+Synthesis Optimization Complete : Time (s): cpu = 00:00:17 ; elapsed = 00:00:30 . Memory (MB): peak = 1680.582 ; gain = 500.312 ; free physical = 780 ; free virtual = 9298
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 50 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 67 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 32 instances were transformed.
-  LD => LDCE: 32 instances
+  A total of 49 instances were transformed.
+  LD => LDCE: 29 instances
+  LDC => LDCE: 20 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-58 Infos, 50 Warnings, 0 Critical Warnings and 0 Errors encountered.
+68 Infos, 47 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:30 . Memory (MB): peak = 1674.582 ; gain = 494.438 ; free physical = 1036 ; free virtual = 10877
+synth_design: Time (s): cpu = 00:00:19 ; elapsed = 00:00:31 . Memory (MB): peak = 1680.582 ; gain = 500.438 ; free physical = 776 ; free virtual = 9295
 WARNING: [Constraints 18-5210] No constraint will be written out.
 INFO: [Common 17-1381] The checkpoint '/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.runs/synth_1/top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.09 . Memory (MB): peak = 1698.594 ; gain = 0.000 ; free physical = 1037 ; free virtual = 10877
-INFO: [Common 17-206] Exiting Vivado at Sun Dec 23 00:57:01 2018...
+report_utilization: Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.10 . Memory (MB): peak = 1704.594 ; gain = 0.000 ; free physical = 776 ; free virtual = 9295
+INFO: [Common 17-206] Exiting Vivado at Sun Dec 23 22:59:33 2018...

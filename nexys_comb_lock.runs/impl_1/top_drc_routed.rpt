@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date         : Sun Dec 23 00:58:10 2018
+| Date         : Sun Dec 23 23:00:45 2018
 | Host         : Aurora-St-Plus running 64-bit Ubuntu 16.04.5 LTS
 | Command      : report_drc -file top_drc_routed.rpt -pb top_drc_routed.pb -rpx top_drc_routed.rpx
 | Design       : top
@@ -50,27 +50,27 @@ Related violations: <none>
 
 PDRC-153#1 Warning
 Gated clock check  
-Net DEB_Array[0].DEBOUNCER_Inst/FSM_sequential_State_reg[0] is a gated clock net sourced by a combinational pin DEB_Array[0].DEBOUNCER_Inst/FSM_Secure_Mode_Enable_reg_i_2/O, cell DEB_Array[0].DEBOUNCER_Inst/FSM_Secure_Mode_Enable_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode_reg[0] is a gated clock net sourced by a combinational pin DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode[19]_i_2/O, cell DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode[19]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#2 Warning
 Gated clock check  
-Net DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode_reg[0] is a gated clock net sourced by a combinational pin DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode[19]_i_2/O, cell DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode[19]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net FSM_Inst/BUF_Passcode_Part_reg[7]_0 is a gated clock net sourced by a combinational pin FSM_Inst/RAND_OUT[5]_i_1/O, cell FSM_Inst/RAND_OUT[5]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#3 Warning
 Gated clock check  
-Net DEB_Array[2].DEBOUNCER_Inst/RAND_OUT_reg[0] is a gated clock net sourced by a combinational pin DEB_Array[2].DEBOUNCER_Inst/RAND_OUT[5]_i_1/O, cell DEB_Array[2].DEBOUNCER_Inst/RAND_OUT[5]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net FSM_Inst/E[0] is a gated clock net sourced by a combinational pin FSM_Inst/GFX_BIN_reg[31]_i_2/O, cell FSM_Inst/GFX_BIN_reg[31]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#4 Warning
 Gated clock check  
-Net FSM_Inst/BUF_Pointer_reg[2]_i_2_n_0 is a gated clock net sourced by a combinational pin FSM_Inst/BUF_Pointer_reg[2]_i_2/O, cell FSM_Inst/BUF_Pointer_reg[2]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2_n_0 is a gated clock net sourced by a combinational pin FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2/O, cell FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#5 Warning
 Gated clock check  
-Net FSM_Inst/E[0] is a gated clock net sourced by a combinational pin FSM_Inst/GFX_BIN_reg[31]_i_2/O, cell FSM_Inst/GFX_BIN_reg[31]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net FSM_Inst/FSM_Secure_Mode_Enable_reg_i_2_n_0 is a gated clock net sourced by a combinational pin FSM_Inst/FSM_Secure_Mode_Enable_reg_i_2/O, cell FSM_Inst/FSM_Secure_Mode_Enable_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PLHOLDVIO-2#1 Warning
@@ -90,13 +90,16 @@ Related violations: <none>
 
 PLHOLDVIO-2#2 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT DEB_Array[2].DEBOUNCER_Inst/RAND_OUT[5]_i_1 is driving clock pin of 6 cells. This could lead to large hold time violations. First few involved cells are:
+A LUT FSM_Inst/RAND_OUT[5]_i_1 is driving clock pin of 14 cells. This could lead to large hold time violations. First few involved cells are:
+    FSM_Inst/BUF_Passcode_Part_reg[0] {FDSE}
+    FSM_Inst/BUF_Passcode_Part_reg[1] {FDSE}
+    FSM_Inst/BUF_Passcode_Part_reg[2] {FDSE}
+    FSM_Inst/BUF_Passcode_Part_reg[3] {FDSE}
+    FSM_Inst/BUF_Passcode_Part_reg[4] {FDSE}
+    FSM_Inst/BUF_Passcode_Part_reg[5] {FDSE}
+    FSM_Inst/BUF_Passcode_Part_reg[6] {FDSE}
+    FSM_Inst/BUF_Passcode_Part_reg[7] {FDSE}
     RAND_GEN_Inst/RAND_OUT_reg[0] {FDRE}
-    RAND_GEN_Inst/RAND_OUT_reg[1] {FDRE}
-    RAND_GEN_Inst/RAND_OUT_reg[2] {FDRE}
-    RAND_GEN_Inst/RAND_OUT_reg[3] {FDRE}
-    RAND_GEN_Inst/RAND_OUT_reg[4] {FDRE}
-    RAND_GEN_Inst/RAND_OUT_reg[5] {FDRE}
 
 Related violations: <none>
 
