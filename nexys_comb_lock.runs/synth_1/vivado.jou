@@ -2,8 +2,8 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Sat Jan 12 00:52:20 2019
-# Process ID: 31543
+# Start of session at: Sat Jan 12 11:04:25 2019
+# Process ID: 19539
 # Current directory: /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.runs/synth_1
 # Command line: vivado -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file: /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.runs/synth_1/top.vds

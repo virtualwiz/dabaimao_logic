@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date         : Sat Jan 12 00:54:03 2019
+| Date         : Sat Jan 12 11:06:08 2019
 | Host         : clevo-n855hk running 64-bit Ubuntu 16.04.5 LTS
 | Command      : report_drc -file top_drc_routed.rpt -pb top_drc_routed.pb -rpx top_drc_routed.rpx
 | Design       : top
@@ -50,27 +50,27 @@ Related violations: <none>
 
 PDRC-153#1 Warning
 Gated clock check  
-Net DEB_Array[1].DEBOUNCER_Inst/BTNS_Signal_1 is a gated clock net sourced by a combinational pin DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode[19]_i_2/O, cell DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode[19]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net DEB_Array[1].DEBOUNCER_Inst/LED17_OBUF[0] is a gated clock net sourced by a combinational pin DEB_Array[1].DEBOUNCER_Inst/LED17_OBUF[1]_inst_i_1/O, cell DEB_Array[1].DEBOUNCER_Inst/LED17_OBUF[1]_inst_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#2 Warning
 Gated clock check  
-Net FSM_Inst/E[0] is a gated clock net sourced by a combinational pin FSM_Inst/GFX_BIN_reg[31]_i_2/O, cell FSM_Inst/GFX_BIN_reg[31]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net FSM_Inst/BUF_Passcode_Part_reg[0]_0 is a gated clock net sourced by a combinational pin FSM_Inst/RAND_OUT[5]_i_1/O, cell FSM_Inst/RAND_OUT[5]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#3 Warning
 Gated clock check  
-Net FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2_n_0 is a gated clock net sourced by a combinational pin FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2/O, cell FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net FSM_Inst/E[0] is a gated clock net sourced by a combinational pin FSM_Inst/GFX_BIN_reg[31]_i_2/O, cell FSM_Inst/GFX_BIN_reg[31]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#4 Warning
 Gated clock check  
-Net FSM_Inst/FSM_RAND_EN_i_1_n_0 is a gated clock net sourced by a combinational pin FSM_Inst/FSM_RAND_EN_i_1/O, cell FSM_Inst/FSM_RAND_EN_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2_n_0 is a gated clock net sourced by a combinational pin FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2/O, cell FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PLHOLDVIO-2#1 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT DEB_Array[1].DEBOUNCER_Inst/BUF_Passcode[19]_i_2 is driving clock pin of 20 cells. This could lead to large hold time violations. First few involved cells are:
+A LUT DEB_Array[1].DEBOUNCER_Inst/LED17_OBUF[1]_inst_i_1 is driving clock pin of 20 cells. This could lead to large hold time violations. First few involved cells are:
     FSM_Inst/BUF_Passcode_reg[0] {FDRE}
     FSM_Inst/BUF_Passcode_reg[10] {FDRE}
     FSM_Inst/BUF_Passcode_reg[11] {FDRE}
@@ -85,13 +85,16 @@ Related violations: <none>
 
 PLHOLDVIO-2#2 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT FSM_Inst/FSM_RAND_EN_i_1 is driving clock pin of 6 cells. This could lead to large hold time violations. First few involved cells are:
+A LUT FSM_Inst/RAND_OUT[5]_i_1 is driving clock pin of 14 cells. This could lead to large hold time violations. First few involved cells are:
+    FSM_Inst/BUF_Passcode_Part_reg[0] {FDRE}
+    FSM_Inst/BUF_Passcode_Part_reg[1] {FDRE}
+    FSM_Inst/BUF_Passcode_Part_reg[2] {FDRE}
+    FSM_Inst/BUF_Passcode_Part_reg[3] {FDRE}
     FSM_Inst/BUF_Passcode_Part_reg[4] {FDRE}
-    FSM_Inst/BUF_Passcode_Part_reg[4]_lopt_replica {FDRE}
     FSM_Inst/BUF_Passcode_Part_reg[5] {FDRE}
-    FSM_Inst/BUF_Passcode_Part_reg[5]_lopt_replica {FDRE}
     FSM_Inst/BUF_Passcode_Part_reg[6] {FDRE}
-    FSM_Inst/BUF_Passcode_Part_reg[6]_lopt_replica {FDRE}
+    FSM_Inst/BUF_Passcode_Part_reg[7] {FDRE}
+    RAND_GEN_Inst/RAND_OUT_reg[0] {FDRE}
 
 Related violations: <none>
 

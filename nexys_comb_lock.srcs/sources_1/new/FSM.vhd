@@ -21,8 +21,7 @@ entity FSM is
     FSM_GFX_OPCODE    : out std_logic_vector(2 downto 0);
     FSM_GFX_DATA      : out std_logic_vector(19 downto 0);
     -- Signals to servo motor
-    LATCH_DRIVE       : out std_logic;
-    DEBUG             : out std_logic_vector(7 downto 0)
+    LATCH_DRIVE       : out std_logic
     );
 end FSM;
 
@@ -77,43 +76,13 @@ architecture Behavioural of FSM is
   signal BUF_Pointer            : std_logic_vector(2 downto 0);
 begin
 
-  DEBUG <= BUF_Passcode_Part;
+  FSM_RAND_EN <= RAND_EN_Signal;
 
   process (RAND_EN_Signal, FSM_RAND, BUF_Passcode)
   begin
-    if rising_edge(RAND_EN_Signal) then
-      -- BUF_Passcode_Part(7 downto 4) <= BUF_Addressing(BUF_Passcode_Preset, FSM_RAND(5 downto 3));
-      -- BUF_Passcode_Part(3 downto 0) <= BUF_Addressing(BUF_Passcode_Preset, FSM_RAND(2 downto 0));
-      -- BUF_Passcode_Part(7 downto 0) <= "10010011";  --DEBUG
-      case FSM_RAND(5 downto 3) is
-        when "000" =>
-          BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(3 downto 0);
-        when "001" =>
-          BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(7 downto 4);
-        when "010" =>
-          BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(11 downto 8);
-        when "011" =>
-          BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(15 downto 12);
-        when "100" =>
-          BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(19 downto 16);
-        when others =>
-          BUF_Passcode_Part(7 downto 4) <= "0000";
-      end case;
-
-      case FSM_RAND(2 downto 0) is
-        when "000" =>
-          BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(3 downto 0);
-        when "001" =>
-          BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(7 downto 4);
-        when "010" =>
-          BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(11 downto 8);
-        when "011" =>
-          BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(15 downto 12);
-        when "100" =>
-          BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(19 downto 16);
-        when others =>
-          BUF_Passcode_Part(7 downto 4) <= "0000";
-      end case;
+    if falling_edge(RAND_EN_Signal) then
+      BUF_Passcode_Part(7 downto 4) <= BUF_Addressing(BUF_Passcode_Preset, FSM_RAND(5 downto 3));
+      BUF_Passcode_Part(3 downto 0) <= BUF_Addressing(BUF_Passcode_Preset, FSM_RAND(2 downto 0));
     end if;
   end process;
 
@@ -148,6 +117,12 @@ begin
     end if;
   end process;
 
+--  ______   ___   _  ____
+-- / ___\ \ / / \ | |/ ___|
+-- \___ \\ V /|  \| | |
+--  ___) || | | |\  | |___
+-- |____/ |_| |_| \_|\____|
+
   SYNC_PROC : process (FSM_CLK)
   begin
     if (rising_edge(FSM_CLK)) then
@@ -155,7 +130,6 @@ begin
       LATCH_DRIVE    <= LATCH_Signal;
       FSM_GFX_DATA   <= FSM_G_Data_Signal;
       FSM_GFX_OPCODE <= FSM_G_Opcode_Signal;
-      FSM_RAND_EN    <= RAND_EN_Signal;
     end if;
   end process;
 
@@ -366,3 +340,34 @@ begin
   end process;
 
 end Behavioural;
+
+
+-- case FSM_RAND(5 downto 3) is
+--   when "000" =>
+--     BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(3 downto 0);
+--   when "001" =>
+--     BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(7 downto 4);
+--   when "010" =>
+--     BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(11 downto 8);
+--   when "011" =>
+--     BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(15 downto 12);
+--   when "100" =>
+--     BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(19 downto 16);
+--   when others =>
+--     BUF_Passcode_Part(7 downto 4) <= "0000";
+-- end case;
+
+-- case FSM_RAND(2 downto 0) is
+--   when "000" =>
+--     BUF_Passcode_Part(3 downto 0) <= BUF_Passcode_Preset(3 downto 0);
+--   when "001" =>
+--     BUF_Passcode_Part(3 downto 0) <= BUF_Passcode_Preset(7 downto 4);
+--   when "010" =>
+--     BUF_Passcode_Part(3 downto 0) <= BUF_Passcode_Preset(11 downto 8);
+--   when "011" =>
+--     BUF_Passcode_Part(3 downto 0) <= BUF_Passcode_Preset(15 downto 12);
+--   when "100" =>
+--     BUF_Passcode_Part(3 downto 0) <= BUF_Passcode_Preset(19 downto 16);
+--   when others =>
+--     BUF_Passcode_Part(3 downto 0) <= "0000";
+-- end case;

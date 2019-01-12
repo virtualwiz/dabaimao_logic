@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date             : Sat Jan 12 00:54:05 2019
+| Date             : Sat Jan 12 11:06:10 2019
 | Host             : clevo-n855hk running 64-bit Ubuntu 16.04.5 LTS
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.131        |
+| Total On-Chip Power (W)  | 0.130        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.034        |
+| Dynamic (W)              | 0.033        |
 | Device Static (W)        | 0.097        |
 | Effective TJA (C/W)      | 4.6          |
 | Max Ambient (C)          | 84.4         |
@@ -53,17 +53,17 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |      337 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      119 |     63400 |            0.19 |
-|   Register     |    <0.001 |      157 |    126800 |            0.12 |
+| Slice Logic    |    <0.001 |      356 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      137 |     63400 |            0.22 |
+|   Register     |    <0.001 |      159 |    126800 |            0.13 |
 |   CARRY4       |    <0.001 |        5 |     15850 |            0.03 |
 |   BUFG         |    <0.001 |        1 |        32 |            3.13 |
-|   F7/F8 Muxes  |    <0.001 |        5 |     63400 |           <0.01 |
-|   Others       |     0.000 |       19 |       --- |             --- |
-| Signals        |     0.001 |      282 |       --- |             --- |
-| I/O            |     0.032 |       45 |       210 |           21.43 |
+|   Others       |     0.000 |       18 |       --- |             --- |
+|   F7/F8 Muxes  |     0.000 |        4 |     63400 |           <0.01 |
+| Signals        |     0.001 |      301 |       --- |             --- |
+| I/O            |     0.030 |       33 |       210 |           15.71 |
 | Static Power   |     0.097 |          |           |                 |
-| Total          |     0.131 |          |           |                 |
+| Total          |     0.130 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -142,7 +142,7 @@ Table of Contents
 +-------------------------------+-----------+
 | Name                          | Power (W) |
 +-------------------------------+-----------+
-| top                           |     0.034 |
+| top                           |     0.033 |
 |   CLOCK_GEN_Inst              |    <0.001 |
 |   DEB_Array[0].DEBOUNCER_Inst |    <0.001 |
 |   DEB_Array[1].DEBOUNCER_Inst |    <0.001 |
