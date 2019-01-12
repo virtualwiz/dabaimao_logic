@@ -1,13 +1,14 @@
-
-*** Running vivado
-    with args -log top.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source top.tcl -notrace
-
-
-****** Vivado v2018.2 (64-bit)
-  **** SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
-  **** IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
-
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Sat Jan 12 17:05:18 2019
+# Process ID: 29833
+# Current directory: /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.runs/impl_1
+# Command line: vivado -log top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top.tcl -notrace
+# Log file: /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.runs/impl_1/top.vdi
+# Journal file: /home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
 source top.tcl -notrace
 Command: link_design -top top -part xc7a100tcsg324-1
 Design is defaulting to srcset: sources_1
@@ -485,98 +486,3 @@ INFO: [runtcl-4] Executing : report_bus_skew -warn_on_violation -file top_bus_sk
 INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max, Timing Stage: Requireds.
 INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
 INFO: [Common 17-206] Exiting Vivado at Sat Jan 12 17:06:59 2019...
-
-*** Running vivado
-    with args -log top.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source top.tcl -notrace
-
-
-****** Vivado v2018.2 (64-bit)
-  **** SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
-  **** IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
-
-source top.tcl -notrace
-Command: open_checkpoint top_routed.dcp
-
-Starting open_checkpoint Task
-
-Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.10 . Memory (MB): peak = 1178.125 ; gain = 0.000 ; free physical = 1018 ; free virtual = 9382
-INFO: [Netlist 29-17] Analyzing 18 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
-INFO: [Project 1-479] Netlist was created with Vivado 2018.2
-INFO: [Device 21-403] Loading part xc7a100tcsg324-1
-INFO: [Project 1-570] Preparing netlist for logic optimization
-INFO: [Timing 38-478] Restoring timing data from binary archive.
-INFO: [Timing 38-479] Binary timing data restore complete.
-INFO: [Project 1-856] Restoring constraints from binary archive.
-INFO: [Project 1-853] Binary constraint restore complete.
-Reading XDEF placement.
-Reading placer database...
-Reading XDEF routing.
-Read XDEF File: Time (s): cpu = 00:00:00.13 ; elapsed = 00:00:00.20 . Memory (MB): peak = 1928.047 ; gain = 0.000 ; free physical = 308 ; free virtual = 8706
-Restored from archive | CPU: 0.190000 secs | Memory: 1.255333 MB |
-Finished XDEF File Restore: Time (s): cpu = 00:00:00.13 ; elapsed = 00:00:00.20 . Memory (MB): peak = 1928.047 ; gain = 0.000 ; free physical = 308 ; free virtual = 8706
-INFO: [Project 1-111] Unisim Transformation Summary:
-No Unisim elements were transformed.
-
-INFO: [Project 1-604] Checkpoint was created with Vivado v2018.2 (64-bit) build 2258646
-open_checkpoint: Time (s): cpu = 00:00:20 ; elapsed = 00:00:46 . Memory (MB): peak = 1928.047 ; gain = 749.922 ; free physical = 307 ; free virtual = 8706
-Command: write_bitstream -force top.bit
-Attempting to get a license for feature 'Implementation' and/or device 'xc7a100t'
-INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a100t'
-Running DRC as a precondition to command write_bitstream
-INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1704] No user IP repositories specified
-INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/mnt/hdd-apps/Xilinx/Vivado/2018.2/data/ip'.
-INFO: [DRC 23-27] Running DRC with 8 threads
-WARNING: [DRC CFGBVS-1] Missing CFGBVS and CONFIG_VOLTAGE Design Properties: Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_design.  Configuration bank voltage select (CFGBVS) must be set to VCCO or GND, and CONFIG_VOLTAGE must be set to the correct configuration voltage, in order to determine the I/O voltage support for the pins in bank 0.  It is suggested to specify these either using the 'Edit Device Properties' function in the GUI or directly in the XDC file using the following syntax:
-
- set_property CFGBVS value1 [current_design]
- #where value1 is either VCCO or GND
-
- set_property CONFIG_VOLTAGE value2 [current_design]
- #where value2 is the voltage provided to configuration bank 0
-
-Refer to the device configuration user guide for more information.
-WARNING: [DRC PDRC-153] Gated clock check: Net DEB_Array[1].DEBOUNCER_Inst/LED17_OBUF[0] is a gated clock net sourced by a combinational pin DEB_Array[1].DEBOUNCER_Inst/LED17_OBUF[1]_inst_i_1/O, cell DEB_Array[1].DEBOUNCER_Inst/LED17_OBUF[1]_inst_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-WARNING: [DRC PDRC-153] Gated clock check: Net FSM_Inst/BUF_Passcode_Part_reg[0]_0 is a gated clock net sourced by a combinational pin FSM_Inst/RAND_OUT[5]_i_1/O, cell FSM_Inst/RAND_OUT[5]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-WARNING: [DRC PDRC-153] Gated clock check: Net FSM_Inst/E[0] is a gated clock net sourced by a combinational pin FSM_Inst/GFX_BIN_reg[31]_i_2/O, cell FSM_Inst/GFX_BIN_reg[31]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-WARNING: [DRC PDRC-153] Gated clock check: Net FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2_n_0 is a gated clock net sourced by a combinational pin FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2/O, cell FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-WARNING: [DRC PLHOLDVIO-2] Non-Optimal connections which could lead to hold violations: A LUT DEB_Array[1].DEBOUNCER_Inst/LED17_OBUF[1]_inst_i_1 is driving clock pin of 20 cells. This could lead to large hold time violations. First few involved cells are:
-    FSM_Inst/BUF_Passcode_reg[0] {FDRE}
-    FSM_Inst/BUF_Passcode_reg[10] {FDRE}
-    FSM_Inst/BUF_Passcode_reg[11] {FDRE}
-    FSM_Inst/BUF_Passcode_reg[12] {FDRE}
-    FSM_Inst/BUF_Passcode_reg[13] {FDRE}
-    FSM_Inst/BUF_Passcode_reg[14] {FDRE}
-    FSM_Inst/BUF_Passcode_reg[15] {FDRE}
-    FSM_Inst/BUF_Passcode_reg[16] {FDRE}
-    FSM_Inst/BUF_Passcode_reg[17] {FDRE}
-WARNING: [DRC PLHOLDVIO-2] Non-Optimal connections which could lead to hold violations: A LUT FSM_Inst/RAND_OUT[5]_i_1 is driving clock pin of 14 cells. This could lead to large hold time violations. First few involved cells are:
-    FSM_Inst/BUF_Passcode_Part_reg[0] {FDRE}
-    FSM_Inst/BUF_Passcode_Part_reg[1] {FDRE}
-    FSM_Inst/BUF_Passcode_Part_reg[2] {FDRE}
-    FSM_Inst/BUF_Passcode_Part_reg[3] {FDRE}
-    FSM_Inst/BUF_Passcode_Part_reg[4] {FDRE}
-    FSM_Inst/BUF_Passcode_Part_reg[5] {FDRE}
-    FSM_Inst/BUF_Passcode_Part_reg[6] {FDRE}
-    FSM_Inst/BUF_Passcode_Part_reg[7] {FDRE}
-    RAND_GEN_Inst/RAND_OUT_reg[0] {FDRE}
-INFO: [Vivado 12-3199] DRC finished with 0 Errors, 7 Warnings
-INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
-INFO: [Designutils 20-2272] Running write_bitstream with 8 threads.
-Loading data files...
-Loading site data...
-Loading route data...
-Processing options...
-Creating bitmap...
-Creating bitstream...
-Writing bitstream ./top.bit...
-INFO: [Vivado 12-1842] Bitgen Completed Successfully.
-INFO: [Project 1-120] WebTalk data collection is mandatory when using a WebPACK part without a full Vivado license. To see the specific WebTalk data collected for your design, open the usage_statistics_webtalk.html or usage_statistics_webtalk.xml file in the implementation directory.
-INFO: [Common 17-186] '/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.runs/impl_1/usage_statistics_webtalk.xml' has been successfully sent to Xilinx on Sat Jan 12 17:08:24 2019. For additional details about this file, please refer to the WebTalk help file at /mnt/hdd-apps/Xilinx/Vivado/2018.2/doc/webtalk_introduction.html.
-INFO: [Common 17-83] Releasing license: Implementation
-23 Infos, 7 Warnings, 0 Critical Warnings and 0 Errors encountered.
-write_bitstream completed successfully
-write_bitstream: Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 2395.895 ; gain = 467.848 ; free physical = 357 ; free virtual = 8609
-INFO: [Common 17-206] Exiting Vivado at Sat Jan 12 17:08:25 2019...
