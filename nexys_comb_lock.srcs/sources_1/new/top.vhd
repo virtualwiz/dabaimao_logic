@@ -79,7 +79,7 @@ architecture Structural of top is
       FSM_GFX_DATA      : out std_logic_vector(19 downto 0);
       -- Signals to servo motor
       LATCH_DRIVE       : out std_logic;
-      DEBUG             : out std_logic_vector(5 downto 0)
+      DEBUG             : out std_logic_vector(7 downto 0)
       );
   end component;
 
@@ -150,7 +150,7 @@ begin
     KEY_ACTIVATE_NORM => BTNS_Signal(0),
     KEY_ACTIVATE_PART => BTNS_Signal(2),
     KEY_CONFIRM       => BTNS_Signal(1),
-    DEBUG             => LEDS(5 downto 0)
+    DEBUG             => LEDS(7 downto 0)
     );
 
   RAND_GEN_Inst : RAND_GEN port map(
