@@ -11,8 +11,8 @@ entity top is
     SENSOR    : in  std_logic;
     BTNS      : in  std_logic_vector(4 downto 0);
     LED17     : out std_logic_vector(2 downto 0);
-    LED16_R   : out std_logic;
-    LEDS      : out std_logic_vector(15 downto 0)
+    LED16_B   : out std_logic;
+    LEDS      : out std_logic_vector(3 downto 0)
     );
 end top;
 
@@ -78,8 +78,7 @@ architecture Structural of top is
       FSM_GFX_OPCODE    : out std_logic_vector(2 downto 0);
       FSM_GFX_DATA      : out std_logic_vector(19 downto 0);
       -- Signals to servo motor
-      LATCH_DRIVE       : out std_logic;
-      DEBUG             : out std_logic_vector(5 downto 0)
+      LATCH_DRIVE       : out std_logic
       );
   end component;
 
@@ -150,7 +149,7 @@ begin
     KEY_ACTIVATE_NORM => BTNS_Signal(0),
     KEY_ACTIVATE_PART => BTNS_Signal(2),
     KEY_CONFIRM       => BTNS_Signal(1),
-    DEBUG             => LEDS(5 downto 0)
+    LATCH_DRIVE       => LED16_B
     );
 
   RAND_GEN_Inst : RAND_GEN port map(
@@ -159,9 +158,7 @@ begin
     RAND_OUT => RAND_DATA_Signal
     );
 
-
-  -- LED17   <= BTNS_Signal(2 downto 0);
-  -- LED16_R <= CLK_SECOND_Signal;
-  -- LEDS(3 downto 0) <= SWITCHES;
+  LED17            <= BTNS_Signal(2 downto 0);
+  LEDS(3 downto 0) <= SWITCHES;
 
 end Structural;
