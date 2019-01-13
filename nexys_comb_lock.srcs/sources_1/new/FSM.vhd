@@ -106,7 +106,7 @@ begin
     end if;
   end process;
 
-  process (KEY_ACTIVATE_PART, KEY_ACTIVATE_NORM)
+  process (KEY_ACTIVATE_PART, KEY_ACTIVATE_NORM, FSM_CLK)
   begin
     if(rising_edge(FSM_CLK)) then
       if (KEY_ACTIVATE_PART = '1') then
@@ -140,7 +140,7 @@ begin
 --  \___/ \___/  |_| |_|    \___/  |_|
 
   --MEALY State-Machine - Outputs based on State and inputs
-  OUTPUT_DECODE : process (State, KEY_ACTIVATE_NORM, KEY_ACTIVATE_PART, KEY_CONFIRM)
+  OUTPUT_DECODE : process (State, KEY_ACTIVATE_NORM, KEY_ACTIVATE_PART, KEY_CONFIRM, FSM_Secure_Mode_Enable, FSM_RAND, BUF_Passcode)
   begin
     --insert Statements to decode internal output signals
     --below is simple example
@@ -253,7 +253,9 @@ begin
 --   | | |  _ <  / ___ \| |\  |___) | |  | |  | | |_| | |\  |
 --   |_| |_| \_\/_/   \_\_| \_|____/___| |_| |___\___/|_| \_|
 
-  NEXT_STATE_DECODE : process (State, KEY_ACTIVATE_NORM, KEY_ACTIVATE_PART, KEY_CONFIRM, FSM_RAND, FSM_Secure_Mode_Enable)
+  NEXT_STATE_DECODE : process (
+  State, KEY_ACTIVATE_NORM, KEY_ACTIVATE_PART, KEY_CONFIRM, FSM_Secure_Mode_Enable, FSM_RAND, 
+  BUF_Passcode, BUF_Passcode_Preset, BUF_Passcode_Part, FSM_DELAY_S, DR_SENSOR)
   begin
     --declare default State for Next_State to avoid latches
     Next_State <= State;                --default is to stay in current State
@@ -341,33 +343,3 @@ begin
 
 end Behavioural;
 
-
--- case FSM_RAND(5 downto 3) is
---   when "000" =>
---     BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(3 downto 0);
---   when "001" =>
---     BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(7 downto 4);
---   when "010" =>
---     BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(11 downto 8);
---   when "011" =>
---     BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(15 downto 12);
---   when "100" =>
---     BUF_Passcode_Part(7 downto 4) <= BUF_Passcode_Preset(19 downto 16);
---   when others =>
---     BUF_Passcode_Part(7 downto 4) <= "0000";
--- end case;
-
--- case FSM_RAND(2 downto 0) is
---   when "000" =>
---     BUF_Passcode_Part(3 downto 0) <= BUF_Passcode_Preset(3 downto 0);
---   when "001" =>
---     BUF_Passcode_Part(3 downto 0) <= BUF_Passcode_Preset(7 downto 4);
---   when "010" =>
---     BUF_Passcode_Part(3 downto 0) <= BUF_Passcode_Preset(11 downto 8);
---   when "011" =>
---     BUF_Passcode_Part(3 downto 0) <= BUF_Passcode_Preset(15 downto 12);
---   when "100" =>
---     BUF_Passcode_Part(3 downto 0) <= BUF_Passcode_Preset(19 downto 16);
---   when others =>
---     BUF_Passcode_Part(3 downto 0) <= "0000";
--- end case;

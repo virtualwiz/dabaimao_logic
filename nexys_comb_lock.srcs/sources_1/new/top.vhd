@@ -9,7 +9,7 @@ entity top is
     DIGITS    : out std_logic_vector(7 downto 0);
     SWITCHES  : in  std_logic_vector(3 downto 0);
     SENSOR    : in  std_logic;
-    BTNS      : in  std_logic_vector(4 downto 0);
+    BTNS      : in  std_logic_vector(2 downto 0);
     LED17     : out std_logic_vector(2 downto 0);
     LED16_B   : out std_logic;
     LEDS      : out std_logic_vector(3 downto 0)
@@ -129,7 +129,7 @@ begin
     );
 
   DEB_Array :
-  for DEB_Address in 0 to 3 generate
+  for DEB_Address in 0 to 2 generate
     DEBOUNCER_Inst : DEBOUNCER port map(
       DEB_CLK => CLK_USER_Signal,
       DEB_IN  => BTNS(DEB_Address),
