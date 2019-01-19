@@ -33,6 +33,8 @@ begin
           GFX_BIN <= x"c0de000f";
         elsif GFX_DATA = 4 then
           GFX_BIN <= x"c0de0000";
+        else
+          GFX_BIN <= x"c0deeeee";
         end if;
       when "010" =>                     -- 5 Digits
         GFX_EXT <= "00000111";
@@ -47,7 +49,7 @@ begin
         GFX_EXT <= "00000011";
         if GFX_DATA(0) = '0' then
           GFX_BIN <= x"c0de" & (x"55" - GFX_DATA(8 downto 1)) & x"ff";
-        elsif GFX_DATA(0) = '1' then
+        else
           GFX_BIN <= x"c0de" & (x"55" - GFX_DATA(8 downto 1)) & x"f0";
         end if;
       when "110" =>                     -- 2 Digits

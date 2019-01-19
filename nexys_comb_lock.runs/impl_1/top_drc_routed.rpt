@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date         : Sat Jan 12 17:06:55 2019
+| Date         : Sat Jan 19 11:30:54 2019
 | Host         : clevo-n855hk running 64-bit Ubuntu 16.04.5 LTS
 | Command      : report_drc -file top_drc_routed.rpt -pb top_drc_routed.pb -rpx top_drc_routed.rpx
 | Design       : top
@@ -24,12 +24,12 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 7
+             Violations found: 6
 +-------------+----------+-------------------------------------------------------------+------------+
 | Rule        | Severity | Description                                                 | Violations |
 +-------------+----------+-------------------------------------------------------------+------------+
 | CFGBVS-1    | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties         | 1          |
-| PDRC-153    | Warning  | Gated clock check                                           | 4          |
+| PDRC-153    | Warning  | Gated clock check                                           | 3          |
 | PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 2          |
 +-------------+----------+-------------------------------------------------------------+------------+
 
@@ -59,11 +59,6 @@ Net FSM_Inst/BUF_Passcode_Part_reg[0]_0 is a gated clock net sourced by a combin
 Related violations: <none>
 
 PDRC-153#3 Warning
-Gated clock check  
-Net FSM_Inst/E[0] is a gated clock net sourced by a combinational pin FSM_Inst/GFX_BIN_reg[31]_i_2/O, cell FSM_Inst/GFX_BIN_reg[31]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#4 Warning
 Gated clock check  
 Net FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2_n_0 is a gated clock net sourced by a combinational pin FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2/O, cell FSM_Inst/FSM_G_Data_Signal_reg[19]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>

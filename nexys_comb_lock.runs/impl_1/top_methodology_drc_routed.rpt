@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date         : Sat Jan 12 17:06:57 2019
+| Date         : Sat Jan 19 11:30:55 2019
 | Host         : clevo-n855hk running 64-bit Ubuntu 16.04.5 LTS
 | Command      : report_methodology -file top_methodology_drc_routed.rpt -pb top_methodology_drc_routed.pb -rpx top_methodology_drc_routed.rpx
 | Design       : top
@@ -23,13 +23,13 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 130
+             Violations found: 102
 +-----------+----------+------------------------------+------------+
 | Rule      | Severity | Description                  | Violations |
 +-----------+----------+------------------------------+------------+
 | LUTAR-1   | Warning  | LUT drives async reset alert | 4          |
 | TIMING-17 | Warning  | Non-clocked sequential cell  | 85         |
-| TIMING-20 | Warning  | Non-clocked latch            | 41         |
+| TIMING-20 | Warning  | Non-clocked latch            | 13         |
 +-----------+----------+------------------------------+------------+
 
 2. REPORT DETAILS
@@ -481,205 +481,65 @@ Related violations: <none>
 
 TIMING-20#1 Warning
 Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[10] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[10]/G is not reached by a timing clock
+The latch FSM_Inst/FSM_G_Data_Signal_reg[10] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[10]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#2 Warning
 Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[11] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[11]/G is not reached by a timing clock
+The latch FSM_Inst/FSM_G_Data_Signal_reg[11] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[11]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#3 Warning
 Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[12] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[12]/G is not reached by a timing clock
+The latch FSM_Inst/FSM_G_Data_Signal_reg[12] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[12]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#4 Warning
 Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[13] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[13]/G is not reached by a timing clock
+The latch FSM_Inst/FSM_G_Data_Signal_reg[13] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[13]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#5 Warning
 Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[14] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[14]/G is not reached by a timing clock
+The latch FSM_Inst/FSM_G_Data_Signal_reg[14] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[14]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#6 Warning
 Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[15] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[15]/G is not reached by a timing clock
+The latch FSM_Inst/FSM_G_Data_Signal_reg[15] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[15]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#7 Warning
 Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[16] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[16]/G is not reached by a timing clock
+The latch FSM_Inst/FSM_G_Data_Signal_reg[16] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[16]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#8 Warning
 Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[17] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[17]/G is not reached by a timing clock
+The latch FSM_Inst/FSM_G_Data_Signal_reg[17] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[17]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#9 Warning
 Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[18] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[18]/G is not reached by a timing clock
+The latch FSM_Inst/FSM_G_Data_Signal_reg[18] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[18]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#10 Warning
 Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[19] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[19]/G is not reached by a timing clock
+The latch FSM_Inst/FSM_G_Data_Signal_reg[19] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[19]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#11 Warning
 Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[1] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[1]/G is not reached by a timing clock
+The latch FSM_Inst/FSM_G_Data_Signal_reg[4] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[4]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#12 Warning
 Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[20] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[20]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#13 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[21] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[21]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#14 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[22] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[22]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#15 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[23] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[23]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#16 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[24] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[24]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#17 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[25] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[25]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#18 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[26] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[26]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#19 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[27] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[27]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#20 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[28] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[28]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#21 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[29] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[29]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#22 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[2] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#23 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[30] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[30]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#24 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[31] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[31]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#25 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[4] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#26 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[6] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#27 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[8] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[8]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#28 Warning
-Non-clocked latch  
-The latch DISP_GFX_Inst/GFX_BIN_reg[9] cannot be properly analyzed as its control pin DISP_GFX_Inst/GFX_BIN_reg[9]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#29 Warning
-Non-clocked latch  
-The latch FSM_Inst/FSM_G_Data_Signal_reg[10] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[10]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#30 Warning
-Non-clocked latch  
-The latch FSM_Inst/FSM_G_Data_Signal_reg[11] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[11]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#31 Warning
-Non-clocked latch  
-The latch FSM_Inst/FSM_G_Data_Signal_reg[12] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[12]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#32 Warning
-Non-clocked latch  
-The latch FSM_Inst/FSM_G_Data_Signal_reg[13] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[13]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#33 Warning
-Non-clocked latch  
-The latch FSM_Inst/FSM_G_Data_Signal_reg[14] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[14]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#34 Warning
-Non-clocked latch  
-The latch FSM_Inst/FSM_G_Data_Signal_reg[15] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[15]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#35 Warning
-Non-clocked latch  
-The latch FSM_Inst/FSM_G_Data_Signal_reg[16] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[16]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#36 Warning
-Non-clocked latch  
-The latch FSM_Inst/FSM_G_Data_Signal_reg[17] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[17]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#37 Warning
-Non-clocked latch  
-The latch FSM_Inst/FSM_G_Data_Signal_reg[18] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[18]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#38 Warning
-Non-clocked latch  
-The latch FSM_Inst/FSM_G_Data_Signal_reg[19] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[19]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#39 Warning
-Non-clocked latch  
-The latch FSM_Inst/FSM_G_Data_Signal_reg[4] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[4]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#40 Warning
-Non-clocked latch  
 The latch FSM_Inst/FSM_G_Data_Signal_reg[8] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[8]/G is not reached by a timing clock
 Related violations: <none>
 
-TIMING-20#41 Warning
+TIMING-20#13 Warning
 Non-clocked latch  
 The latch FSM_Inst/FSM_G_Data_Signal_reg[9] cannot be properly analyzed as its control pin FSM_Inst/FSM_G_Data_Signal_reg[9]/G is not reached by a timing clock
 Related violations: <none>
