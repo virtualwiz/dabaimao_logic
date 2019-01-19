@@ -9,7 +9,7 @@ entity top is
     DIGITS    : out std_logic_vector(7 downto 0);
     SWITCHES  : in  std_logic_vector(3 downto 0);
     SENSOR    : in  std_logic;
-    BTNS      : in  std_logic_vector(2 downto 0);
+    BTNS      : in  std_logic_vector(3 downto 0);
     LED17     : out std_logic_vector(2 downto 0);
     LED16_B   : out std_logic;
     LEDS      : out std_logic_vector(3 downto 0)
@@ -70,6 +70,7 @@ architecture Structural of top is
       KEY_ACTIVATE_NORM : in  std_logic;
       KEY_ACTIVATE_PART : in  std_logic;
       KEY_CONFIRM       : in  std_logic;
+      KEY_PRGM          : in  std_logic;
       DR_SENSOR         : in  std_logic;
       -- Random numbers operations
       FSM_RAND          : in  std_logic_vector(5 downto 0);
@@ -129,7 +130,7 @@ begin
     );
 
   DEB_Array :
-  for DEB_Address in 0 to 2 generate
+  for DEB_Address in 0 to 3 generate
     DEBOUNCER_Inst : DEBOUNCER port map(
       DEB_CLK => CLK_USER_Signal,
       DEB_IN  => BTNS(DEB_Address),
@@ -149,6 +150,7 @@ begin
     KEY_ACTIVATE_NORM => BTNS_Signal(0),
     KEY_ACTIVATE_PART => BTNS_Signal(2),
     KEY_CONFIRM       => BTNS_Signal(1),
+    KEY_PRGM          => BTNS_Signal(3),
     LATCH_DRIVE       => LED16_B
     );
 
