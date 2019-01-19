@@ -13,6 +13,7 @@ entity FSM is
     KEY_ACTIVATE_NORM : in  std_logic;
     KEY_ACTIVATE_PART : in  std_logic;
     KEY_CONFIRM       : in  std_logic;
+    KEY_PRGM          : in  std_logic;
     DR_SENSOR         : in  std_logic;
     -- Random numbers operations
     FSM_RAND          : in  std_logic_vector(5 downto 0);
@@ -58,22 +59,25 @@ architecture Behavioural of FSM is
     st8_declined, st9_declined_code_disp,
     stX_activate,
     stC_compare,
-    stR_rand_gen
+    stR_rand_gen,
+    stP_program
     );
-  signal State, Next_State      : TypeDef_State;
+  signal State, Next_State       : TypeDef_State;
 -- Declare internal signals for all outputs of the State-machine
-  signal LATCH_Signal           : std_logic;
-  signal RAND_EN_Signal         : std_logic;
-  signal FSM_G_Data_Signal      : std_logic_vector(19 downto 0);
-  signal FSM_G_Opcode_Signal    : std_logic_vector(2 downto 0);
+  signal LATCH_Signal            : std_logic;
+  signal RAND_EN_Signal          : std_logic;
+  signal FSM_G_Data_Signal       : std_logic_vector(19 downto 0);
+  signal FSM_G_Opcode_Signal     : std_logic_vector(2 downto 0);
 -- Passcode buffer registers
-  signal BUF_Passcode           : std_logic_vector(19 downto 0);
-  signal BUF_Passcode_Preset    : std_logic_vector(19 downto 0) := x"24013";
-  signal BUF_Passcode_Part      : std_logic_vector(7 downto 0);
+  signal BUF_Passcode            : std_logic_vector(19 downto 0);
+  signal BUF_Passcode_Preset     : std_logic_vector(19 downto 0) := x"24013";
+  signal BUF_Passcode_Part       : std_logic_vector(7 downto 0);
 -- Mode flag
-  signal FSM_Secure_Mode_Enable : std_logic;
+  signal FSM_Secure_Mode_Enable  : std_logic;
+  signal FSM_Program_Mode_Enable : std_logic;
+  signal FSM_Program_Exec        : std_logic;
 -- Register pointers
-  signal BUF_Pointer            : std_logic_vector(2 downto 0);
+  signal BUF_Pointer             : std_logic_vector(2 downto 0);
 begin
 
   FSM_RAND_EN <= RAND_EN_Signal;
@@ -106,13 +110,33 @@ begin
     end if;
   end process;
 
+  process (FSM_Program_Exec)
+  begin
+    if(rising_edge(FSM_Program_Exec)) then
+      BUF_Passcode_Preset <= BUF_Passcode;
+    end if;
+  end process;
+
+  -- Flip-flops for mode flags
+
   process (KEY_ACTIVATE_PART, KEY_ACTIVATE_NORM, FSM_CLK)
   begin
     if(rising_edge(FSM_CLK)) then
-      if (KEY_ACTIVATE_PART = '1') then
+      if(KEY_ACTIVATE_PART = '1') then
         FSM_Secure_Mode_Enable <= '1';
-      elsif (KEY_ACTIVATE_NORM = '1') then
+      elsif(KEY_ACTIVATE_NORM = '1') then
         FSM_Secure_Mode_Enable <= '0';
+      end if;
+    end if;
+  end process;
+
+  process (KEY_ACTIVATE_PART, KEY_ACTIVATE_NORM, KEY_PRGM, FSM_CLK)
+  begin
+    if(rising_edge(FSM_CLK)) then
+      if(KEY_PRGM = '1' and FSM_Secure_Mode_Enable = '0') then
+        FSM_Program_Mode_Enable <= '1';
+      elsif(KEY_ACTIVATE_NORM = '1' or KEY_ACTIVATE_PART = '1') then
+        FSM_Program_Mode_Enable <= '0';
       end if;
     end if;
   end process;
@@ -125,7 +149,7 @@ begin
 
   SYNC_PROC : process (FSM_CLK)
   begin
-    if (rising_edge(FSM_CLK)) then
+    if(rising_edge(FSM_CLK)) then
       State          <= Next_State;
       LATCH_DRIVE    <= LATCH_Signal;
       FSM_GFX_DATA   <= FSM_G_Data_Signal;
@@ -145,21 +169,24 @@ begin
     --insert Statements to decode internal output signals
     --below is simple example
     if State = st0_idle then            --Idling, waiting for mode selection
+      FSM_Program_Exec    <= '0';
       LATCH_Signal        <= '0';
       FSM_G_Opcode_Signal <= b"000";
       FSM_G_Data_Signal   <= (others => '0');
       BUF_Pointer         <= "000";
       RAND_EN_Signal      <= '0';
     elsif state = stR_rand_gen then
+      FSM_Program_Exec    <= '0';
       LATCH_Signal        <= '0';
       FSM_G_Opcode_Signal <= b"101";
       FSM_G_Data_Signal   <= (others => '0');
       BUF_Pointer         <= "000";
       RAND_EN_Signal      <= '1';
     elsif State = st1_p1 then
-      LATCH_Signal   <= '0';
-      BUF_Pointer    <= "001";
-      RAND_EN_Signal <= '0';
+      FSM_Program_Exec <= '0';
+      LATCH_Signal     <= '0';
+      BUF_Pointer      <= "001";
+      RAND_EN_Signal   <= '0';
       if FSM_Secure_Mode_Enable = '0' then
         FSM_G_Opcode_Signal <= b"001";
         FSM_G_Data_Signal   <= x"00001";
@@ -170,36 +197,42 @@ begin
         FSM_G_Data_Signal(0)          <= '1';
       end if;
     elsif State = st2_p2 then
+      FSM_Program_Exec    <= '0';
       LATCH_Signal        <= '0';
       FSM_G_Opcode_Signal <= b"001";
       FSM_G_Data_Signal   <= x"00002";
       BUF_Pointer         <= "010";
       RAND_EN_Signal      <= '0';
     elsif State = st3_p3 then
+      FSM_Program_Exec    <= '0';
       LATCH_Signal        <= '0';
       FSM_G_Opcode_Signal <= b"001";
       FSM_G_Data_Signal   <= x"00003";
       BUF_Pointer         <= "011";
       RAND_EN_Signal      <= '0';
     elsif State = st4_p4 then
+      FSM_Program_Exec    <= '0';
       LATCH_Signal        <= '0';
       FSM_G_Opcode_Signal <= b"001";
       FSM_G_Data_Signal   <= x"00004";
       BUF_Pointer         <= "100";
       RAND_EN_Signal      <= '0';
     elsif State = stC_compare then
+      FSM_Program_Exec    <= '0';
       LATCH_Signal        <= '0';
       BUF_Pointer         <= "000";
       RAND_EN_Signal      <= '0';
       FSM_G_Opcode_Signal <= b"111";
       FSM_G_Data_Signal   <= x"00000";
     elsif State = st6_accepted then     -- Passcode accepted, unlock
+      FSM_Program_Exec    <= '0';
       LATCH_Signal        <= '1';
       FSM_G_Opcode_Signal <= b"011";
       FSM_G_Data_Signal   <= (others => '0');
       BUF_Pointer         <= "000";
       RAND_EN_Signal      <= '0';
     elsif State = st7_accepted_code_disp then  -- Display entered passcode 5 digits
+      FSM_Program_Exec  <= '0';
       LATCH_Signal      <= '1';
       FSM_G_Data_Signal <= BUF_Passcode;
       BUF_Pointer       <= "000";
@@ -210,12 +243,14 @@ begin
         FSM_G_Opcode_Signal <= b"110";
       end if;
     elsif State = st8_declined then     -- Passcode declined, do not unlock
+      FSM_Program_Exec    <= '0';
       LATCH_Signal        <= '0';
       FSM_G_Opcode_Signal <= b"100";
       FSM_G_Data_Signal   <= (others => '0');
       BUF_Pointer         <= "000";
       RAND_EN_Signal      <= '0';
     elsif State = st9_declined_code_disp then  -- Display entered passcode 2 digits
+      FSM_Program_Exec  <= '0';
       LATCH_Signal      <= '0';
       FSM_G_Data_Signal <= BUF_Passcode;
       BUF_Pointer       <= "000";
@@ -226,9 +261,10 @@ begin
         FSM_G_Opcode_Signal <= b"110";
       end if;
     elsif State = stX_activate then
-      LATCH_Signal   <= '0';
-      BUF_Pointer    <= "000";
-      RAND_EN_Signal <= '0';
+      FSM_Program_Exec <= '0';
+      LATCH_Signal     <= '0';
+      BUF_Pointer      <= "000";
+      RAND_EN_Signal   <= '0';
       if FSM_Secure_Mode_Enable = '0' then
         FSM_G_Opcode_Signal <= b"001";
         FSM_G_Data_Signal   <= x"00000";
@@ -238,7 +274,15 @@ begin
         FSM_G_Data_Signal(3 downto 1) <= FSM_RAND(2 downto 0);
         FSM_G_Data_Signal(0)          <= '0';
       end if;
+    elsif State = stP_program then
+      FSM_Program_Exec    <= '1';
+      LATCH_Signal        <= '0';
+      BUF_Pointer         <= "000";
+      RAND_EN_Signal      <= '0';
+      FSM_G_Opcode_Signal <= b"011";
+      FSM_G_Data_Signal   <= x"00000";
     else
+      FSM_Program_Exec    <= '0';
       BUF_Pointer         <= "000";
       RAND_EN_Signal      <= '0';
       LATCH_Signal        <= '0';
@@ -254,8 +298,8 @@ begin
 --   |_| |_| \_\/_/   \_\_| \_|____/___| |_| |___\___/|_| \_|
 
   NEXT_STATE_DECODE : process (
-  State, KEY_ACTIVATE_NORM, KEY_ACTIVATE_PART, KEY_CONFIRM, FSM_Secure_Mode_Enable, FSM_RAND, 
-  BUF_Passcode, BUF_Passcode_Preset, BUF_Passcode_Part, FSM_DELAY_S, DR_SENSOR)
+    State, KEY_ACTIVATE_NORM, KEY_ACTIVATE_PART, KEY_CONFIRM, FSM_Secure_Mode_Enable, FSM_RAND,
+    BUF_Passcode, BUF_Passcode_Preset, BUF_Passcode_Part, FSM_DELAY_S, DR_SENSOR, FSM_Program_Mode_Enable)
   begin
     --declare default State for Next_State to avoid latches
     Next_State <= State;                --default is to stay in current State
@@ -296,7 +340,11 @@ begin
         end if;
       when st4_p4 =>
         if KEY_CONFIRM = '1' then
-          Next_State <= stC_compare;
+          if FSM_Program_Mode_Enable = '1' then
+            Next_State <= stP_program;
+          else
+            Next_State <= stC_compare;
+          end if;
         end if;
       when stC_compare =>
         if FSM_Secure_Mode_Enable = '0' then
@@ -336,6 +384,8 @@ begin
         elsif KEY_CONFIRM = '1' then
           Next_State <= st0_idle;
         end if;
+      when stP_program =>
+        Next_State <= st0_idle;
       when others =>
         Next_State <= st0_idle;
     end case;
