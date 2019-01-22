@@ -2,6 +2,12 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 
+--  ____ _____ ____  _   _  ____ _____ _   _ ____  _____
+-- / ___|_   _|  _ \| | | |/ ___|_   _| | | |  _ \| ____|
+-- \___ \ | | | |_) | | | | |     | | | | | | |_) |  _|
+--  ___) || | |  _ <| |_| | |___  | | | |_| |  _ <| |___
+-- |____/ |_| |_| \_\\___/ \____| |_|  \___/|_| \_\_____|
+
 entity top is
   port(
     CLK100MHZ : in  std_logic;
@@ -17,7 +23,7 @@ entity top is
 end top;
 
 architecture Structural of top is
-  component CLOCK_GEN
+  component CLOCK_GEN is
     port(
       -- 100 MHz crystal oscillator input
       CLK_MAIN   : in  std_logic;

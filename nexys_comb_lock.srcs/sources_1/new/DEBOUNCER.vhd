@@ -10,7 +10,7 @@ entity DEBOUNCER is
 end DEBOUNCER;
 
 architecture Dataflow of DEBOUNCER is
-  signal Q1, Q2, Q3 : std_logic;
+  signal Q1, Q2, Q3 : std_logic := '0';
 begin
   process(DEB_CLK)
   begin

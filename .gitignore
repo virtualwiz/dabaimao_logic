@@ -89,3 +89,7 @@ nexys_comb_lock\.cache/
 nexys_comb_lock\.hw/
 
 nexys_comb_lock\.runs/
+
+nexys_comb_lock\.ip_user_files/
+
+nexys_comb_lock\.sim/

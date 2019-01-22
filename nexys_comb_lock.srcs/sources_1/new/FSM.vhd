@@ -64,20 +64,20 @@ architecture Behavioural of FSM is
     );
   signal State, Next_State       : TypeDef_State;
 -- Declare internal signals for all outputs of the State-machine
-  signal LATCH_Signal            : std_logic;
-  signal RAND_EN_Signal          : std_logic;
-  signal FSM_G_Data_Signal       : std_logic_vector(19 downto 0);
-  signal FSM_G_Opcode_Signal     : std_logic_vector(2 downto 0);
+  signal LATCH_Signal            : std_logic                     := '0';
+  signal RAND_EN_Signal          : std_logic                     := '0';
+  signal FSM_G_Data_Signal       : std_logic_vector(19 downto 0) := (others => '0');
+  signal FSM_G_Opcode_Signal     : std_logic_vector(2 downto 0)  := (others => '0');
 -- Passcode buffer registers
-  signal BUF_Passcode            : std_logic_vector(19 downto 0);
+  signal BUF_Passcode            : std_logic_vector(19 downto 0) := (others => '0');
   signal BUF_Passcode_Preset     : std_logic_vector(19 downto 0) := x"24013";
-  signal BUF_Passcode_Part       : std_logic_vector(7 downto 0);
+  signal BUF_Passcode_Part       : std_logic_vector(7 downto 0)  := (others => '0');
 -- Mode flag
-  signal FSM_Secure_Mode_Enable  : std_logic;
-  signal FSM_Program_Mode_Enable : std_logic;
-  signal FSM_Program_Exec        : std_logic;
+  signal FSM_Secure_Mode_Enable  : std_logic                     := '0';
+  signal FSM_Program_Mode_Enable : std_logic                     := '0';
+  signal FSM_Program_Exec        : std_logic                     := '0';
 -- Register pointers
-  signal BUF_Pointer             : std_logic_vector(2 downto 0);
+  signal BUF_Pointer             : std_logic_vector(2 downto 0)  := (others => '0');
 begin
 
   FSM_RAND_EN <= RAND_EN_Signal;

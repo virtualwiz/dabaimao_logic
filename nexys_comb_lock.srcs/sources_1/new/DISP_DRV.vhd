@@ -16,8 +16,8 @@ entity DISP_DRV is
 end DISP_DRV;
 
 architecture Behavioural of DISP_DRV is
-  signal Decode_ROM_Address  : std_logic_vector(2 downto 0);
-  signal Pattern_ROM_Address : std_logic_vector(4 downto 0);
+  signal Decode_ROM_Address  : std_logic_vector(2 downto 0) := (others => '0');
+  signal Pattern_ROM_Address : std_logic_vector(4 downto 0) := (others => '0');
 begin
 
   process(DISP_CLK)
