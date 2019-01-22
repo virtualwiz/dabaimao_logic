@@ -36,7 +36,8 @@ begin
     "11101111" when "100",
     "11011111" when "101",
     "10111111" when "110",
-    "01111111" when "111";
+    "01111111" when "111",
+    "11111111" when others;
 
   with Decode_ROM_Address select  -- Binary anode select to pattern ROM address
     Pattern_ROM_Address <=
@@ -47,7 +48,8 @@ begin
     DISP_EXT(4) & DISP_BIN(19 downto 16) when "100",
     DISP_EXT(5) & DISP_BIN(23 downto 20) when "101",
     DISP_EXT(6) & DISP_BIN(27 downto 24) when "110",
-    DISP_EXT(7) & DISP_BIN(31 downto 28) when "111";
+    DISP_EXT(7) & DISP_BIN(31 downto 28) when "111",
+    "00000"                              when others;
 
   with Pattern_ROM_Address select       -- Pattern ROM
     --      0

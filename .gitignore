@@ -84,3 +84,8 @@
 !*.elf
 !*.bmm
 !*.xmp
+nexys_comb_lock\.cache/
+
+nexys_comb_lock\.hw/
+
+nexys_comb_lock\.runs/

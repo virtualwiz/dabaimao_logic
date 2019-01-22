@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="38" Path="/home/matthew/Documents/nexys_comb_lock/nexys_comb_lock.xpr">
+<Project Version="7" Minor="38" Path="/home/matthew/Document/nexys_comb_lock/nexys_comb_lock.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="00a993ad7f9b49819a8df28fe49f17e6"/>
