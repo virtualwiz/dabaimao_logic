@@ -37,6 +37,14 @@ architecture Behavioral of testbench is
 
   constant CLK_PERIOD : time := 10 ns;
 
+  type Code_TypeDef is array(0 to 4) of std_logic_vector(3 downto 0);
+  type Code_Random_TypeDef is array(0 to 1) of std_logic_vector(3 downto 0);
+
+  constant Accepted_Sequence        : Code_TypeDef        := (x"2", x"4", x"0", x"1", x"3");
+  constant Declined_Sequence        : Code_TypeDef        := (x"2", x"4", x"3", x"2", x"1");
+  constant Accepted_Random_Sequence : Code_Random_TypeDef := (x"0", x"1");
+  constant Declined_Random_Sequence : Code_Random_TypeDef := (x"5", x"6");
+
 begin
   UUT : top port map(
     CLK100MHZ => s_CLK100MHZ,
@@ -84,20 +92,145 @@ begin
     s_SENSOR   <= '0';
     wait for 20 us;
 
-    -- RUN 1 : Normal mode unlocking
+    --  _   _  ___  ____  __  __        ___  _  __
+    -- | \ | |/ _ \|  _ \|  \/  |  _   / _ \| |/ /
+    -- |  \| | | | | |_) | |\/| |_| |_| | | | ' /
+    -- | |\  | |_| |  _ <| |  | |_   _| |_| | . \
+    -- |_| \_|\___/|_| \_\_|  |_| |_|  \___/|_|\_\
+
+    -- Use Case 1 : Normal mode and correct passcode, door should unlock immediately.
+    -- Entering normal operation mode
 
     s_BTNS(0) <= '1';
     wait for 2 us;
     s_BTNS(0) <= '0';
     wait for 2 us;
 
-    s_BTNS(1) <= '1';
+    -- Entering passcode
+    normal_unlock_seq : for Code_Index in 0 to 4 loop
+      s_SWITCHES <= Accepted_Sequence(Code_Index);
+      wait for 100 ns;
+      s_BTNS(1)  <= '1';
+      wait for 2 us;
+      s_BTNS(1)  <= '0';
+      wait for 2 us;
+    end loop;
+
+    -- Wait for display transition
+    wait for 20 us;
+
+    -- Return to Idle
+    s_SWITCHES <= "0000";
+    s_BTNS(1)  <= '1';
     wait for 2 us;
-    s_BTNS(1) <= '0';
+    s_BTNS(1)  <= '0';
+    wait for 2 us;
+
+    --  _   _  ___  ____  __  __       _____ ____  ____
+    -- | \ | |/ _ \|  _ \|  \/  |  _  | ____|  _ \|  _ \
+    -- |  \| | | | | |_) | |\/| |_| |_|  _| | |_) | |_) |
+    -- | |\  | |_| |  _ <| |  | |_   _| |___|  _ <|  _ <
+    -- |_| \_|\___/|_| \_\_|  |_| |_| |_____|_| \_\_| \_\
+
+    -- Use Case 2 : Normal mode and wrong code, should not unlock the door.
+    -- Entering normal operation mode
+
+    s_BTNS(0) <= '1';
+    wait for 2 us;
+    s_BTNS(0) <= '0';
+    wait for 2 us;
+
+    -- Entering wrong passcode
+    normal_wrong_seq : for Code_Index in 0 to 4 loop
+      s_SWITCHES <= Declined_Sequence(Code_Index);
+      wait for 100 ns;
+      s_BTNS(1)  <= '1';
+      wait for 2 us;
+      s_BTNS(1)  <= '0';
+      wait for 2 us;
+    end loop;
+
+    -- Wait for display transition
+    wait for 20 us;
+
+    -- Return to Idle
+    s_SWITCHES <= "0000";
+    s_BTNS(1)  <= '1';
+    wait for 2 us;
+    s_BTNS(1)  <= '0';
+    wait for 2 us;
+
+    --  ____  _____ ____ _   _ ____  _____       ___  _  __
+    -- / ___|| ____/ ___| | | |  _ \| ____| _   / _ \| |/ /
+    -- \___ \|  _|| |   | | | | |_) |  _| _| |_| | | | ' /
+    --  ___) | |__| |___| |_| |  _ <| |__|_   _| |_| | . \
+    -- |____/|_____\____|\___/|_| \_\_____||_|  \___/|_|\_\
+
+    -- Use Case 3 : Secure mode and correct passcode entered, door should unlock
+    -- Entering secured operation mode
+
+    s_BTNS(2) <= '1';
+    wait for 2 us;
+    s_BTNS(2) <= '0';
+    wait for 10 us;
+
+    -- LED display now returning B0 99 which are numbers 3 and 4
+
+    secure_unlock_seq : for Code_Index in 0 to 1 loop
+      s_SWITCHES <= Accepted_Random_Sequence(Code_Index);
+      wait for 100 ns;
+      s_BTNS(1)  <= '1';
+      wait for 2 us;
+      s_BTNS(1)  <= '0';
+      wait for 2 us;
+    end loop;
+
+    -- Wait for display transition
+    wait for 20 us;
+
+    -- Return to Idle
+    s_SWITCHES <= "0000";
+    s_BTNS(1)  <= '1';
+    wait for 2 us;
+    s_BTNS(1)  <= '0';
+    wait for 2 us;
+
+    --  ____  _____ ____ _   _ ____  _____      _____ ____  ____
+    -- / ___|| ____/ ___| | | |  _ \| ____| _  | ____|  _ \|  _ \
+    -- \___ \|  _|| |   | | | | |_) |  _| _| |_|  _| | |_) | |_) |
+    --  ___) | |__| |___| |_| |  _ <| |__|_   _| |___|  _ <|  _ <
+    -- |____/|_____\____|\___/|_| \_\_____||_| |_____|_| \_\_| \_\
+
+    -- Use Case 4 : Secure mode and wrong passcode entered, door should keep locked
+    -- Entering secured operation mode
+
+    s_BTNS(2) <= '1';
+    wait for 2 us;
+    s_BTNS(2) <= '0';
+    wait for 10 us;
+
+    -- Test sequence does not contain any numbers in the correct passcode
+    -- so display content can be ignored
+
+    secure_wrong_seq : for Code_Index in 0 to 1 loop
+      s_SWITCHES <= Declined_Random_Sequence(Code_Index);
+      wait for 100 ns;
+      s_BTNS(1)  <= '1';
+      wait for 2 us;
+      s_BTNS(1)  <= '0';
+      wait for 2 us;
+    end loop;
+
+    -- Wait for display transition
+    wait for 20 us;
+
+    -- Return to Idle
+    s_SWITCHES <= "0000";
+    s_BTNS(1)  <= '1';
+    wait for 2 us;
+    s_BTNS(1)  <= '0';
     wait for 2 us;
 
     wait for 1 ms;
-
-
   end process;
 end Behavioral;
