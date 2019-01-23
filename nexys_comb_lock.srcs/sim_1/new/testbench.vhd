@@ -2,6 +2,12 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 
 entity testbench is
+  --  _____ _____ ____ _____ ____  _____ _   _  ____ _   _
+  -- |_   _| ____/ ___|_   _| __ )| ____| \ | |/ ___| | | |
+  --   | | |  _| \___ \ | | |  _ \|  _| |  \| | |   | |_| |
+  --   | | | |___ ___) || | | |_) | |___| |\  | |___|  _  |
+  --   |_| |_____|____/ |_| |____/|_____|_| \_|\____|_| |_|
+
 end testbench;
 
 architecture Behavioral of testbench is
@@ -60,6 +66,17 @@ begin
   -- | Normal    | Enter     | Secure    | Program   |
   -- +-----------+-----------+-----------+-----------+
 
+  -- LED display patterns as hexadecimal numbers
+  -- +----------+-------------------------+
+  -- | String   | Numbers series          |
+  -- +----------+-------------------------+
+  -- | IDLE     | F9 A1 C7 86             |
+  -- | CODE     | C6 C0 A1 86             |
+  -- | CODE**   | C6 C0 A1 86 BF BF       |
+  -- | ACCEPTED | 88 C6 C6 86 8C 87 86 A1 |
+  -- | DECLINED | A1 86 C6 C7 F9 C8 86 A1 |
+  -- +----------+-------------------------+
+
   TEST_PROCESS : process
   begin
     s_BTNS     <= "0000";
@@ -70,8 +87,17 @@ begin
     -- RUN 1 : Normal mode unlocking
 
     s_BTNS(0) <= '1';
-    wait for 1 us;
+    wait for 2 us;
     s_BTNS(0) <= '0';
+    wait for 2 us;
+
+    s_BTNS(1) <= '1';
+    wait for 2 us;
+    s_BTNS(1) <= '0';
+    wait for 2 us;
+
+    wait for 1 ms;
+
 
   end process;
 end Behavioral;

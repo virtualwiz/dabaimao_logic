@@ -14,8 +14,8 @@ entity CLOCK_GEN is
 end CLOCK_GEN;
 
 architecture Behavioural of CLOCK_GEN is
-  constant Sys_Prescaler_Width : integer := 17;  -- SYNTHESIS
---  constant Sys_Prescaler_Width : integer := 1;   -- SIMULATION
+--  constant Sys_Prescaler_Width : integer := 17;  -- SYNTHESIS
+  constant Sys_Prescaler_Width : integer := 1;   -- SIMULATION
 
   -- SYNTHESIS Configuration :
   -- +-----------+------------+--------------+
