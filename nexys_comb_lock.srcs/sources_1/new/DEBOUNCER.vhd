@@ -5,15 +5,15 @@ use ieee.std_logic_1164.all;
 -- CLK    |___________|           |___________|
 --             _   _______________________
 -- IN  _______| |_|                       |_______
---                     ___________
--- OUT _______________|           |_______________
+--                     _______________________
+-- OUT _______________|                       |__
 
 
 entity DEBOUNCER is
   port(
-    DEB_CLK   : in  std_logic;
-    DEB_IN    : in  std_logic;
-    DEB_OUT   : out std_logic
+    DEB_CLK : in  std_logic;
+    DEB_IN  : in  std_logic;
+    DEB_OUT : out std_logic
     );
 end DEBOUNCER;
 

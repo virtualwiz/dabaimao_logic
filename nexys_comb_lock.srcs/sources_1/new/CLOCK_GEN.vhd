@@ -14,8 +14,8 @@ entity CLOCK_GEN is
 end CLOCK_GEN;
 
 architecture Behavioural of CLOCK_GEN is
---  constant Sys_Prescaler_Width : integer := 17;  -- SYNTHESIS
-  constant Sys_Prescaler_Width : integer := 1;   -- SIMULATION
+  constant Sys_Prescaler_Width : integer := 17;  -- SYNTHESIS
+--  constant Sys_Prescaler_Width : integer := 1;   -- SIMULATION
 
   -- SYNTHESIS Configuration :
   -- +-----------+------------+--------------+
@@ -33,9 +33,9 @@ architecture Behavioural of CLOCK_GEN is
   -- +-----------+------------+--------------+
 
   signal Seg_Counter    : std_logic_vector(Sys_Prescaler_Width downto 0) := (others => '0');
-  signal User_Counter   : std_logic_vector(3 downto 0) := (others => '0');  -- User : ~ 24 Hz
-  signal Second_Counter : std_logic_vector(4 downto 0) := (others => '0');
-  signal Second_Reg     : std_logic := '0';
+  signal User_Counter   : std_logic_vector(3 downto 0)                   := (others => '0');
+  signal Second_Counter : std_logic_vector(4 downto 0)                   := (others => '0');
+  signal Second_Reg     : std_logic                                      := '0';
 
 begin
 

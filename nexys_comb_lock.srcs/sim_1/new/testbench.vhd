@@ -10,7 +10,7 @@ entity testbench is
 
 end testbench;
 
-architecture Behavioral of testbench is
+architecture Behavioural of testbench is
   component top is
     port(
       CLK100MHZ : in  std_logic;
@@ -233,4 +233,4 @@ begin
 
     wait for 1 ms;
   end process;
-end Behavioral;
+end Behavioural;

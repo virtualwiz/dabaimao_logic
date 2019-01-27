@@ -163,7 +163,7 @@ begin
 -- | |_| | |_| | | | |  __/| |_| | | |
 --  \___/ \___/  |_| |_|    \___/  |_|
 
-  --MEALY State-Machine - Outputs based on State and inputs
+  --MOORE State-Machine - Outputs based on State
   OUTPUT_DECODE : process (State, KEY_ACTIVATE_NORM, KEY_ACTIVATE_PART, KEY_CONFIRM, FSM_Secure_Mode_Enable, FSM_RAND, BUF_Passcode)
   begin
     --insert Statements to decode internal output signals
